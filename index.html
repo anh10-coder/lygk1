@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề Cương Ôn Tập GHKI - Vật Lí 2026-2027</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --warning: #d97706;
+      --warning-bg: #fef3c7;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding: 14px;
+    }
+
+    .container { max-width: 920px; margin: 0 auto; }
+
+    .header-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+
+    .school-bar {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .filter-group, .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    select, button {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: all 0.15s ease;
+    }
+
+    select { background-color: #fff; color: var(--text); max-width: 100%; }
+    .btn-primary { background-color: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-primary:hover { background-color: var(--primary-hover); }
+    .btn-outline { background-color: #fff; color: var(--text); }
+    .btn-outline:hover { background-color: #f1f5f9; }
+    .btn-warning { background-color: #f59e0b; color: #fff; border-color: #f59e0b; }
+    .btn-warning:hover { background-color: #d97706; }
+
+    .stats-bar {
+      position: sticky;
+      top: 8px;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .stat-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .stat-badge { padding: 4px 10px; border-radius: 6px; background: #f1f5f9; }
+    .stat-correct { color: var(--success); background: var(--success-bg); }
+    .stat-wrong { color: var(--danger); background: var(--danger-bg); }
+    .stat-score { color: var(--primary); background: #dbeafe; }
+
+    .question-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .card-header-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+
+    .topic-tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: #eff6ff;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .type-tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #7c3aed;
+      background: #f3e8ff;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    
+    .type-tag.tf-tag { color: #b45309; background: #fef3c7; }
+    .type-tag.sa-tag { color: #0f766e; background: #ccfbf1; }
+
+    .question-text {
+      font-weight: 600;
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+      white-space: pre-line;
+    }
+
+    .figure-box {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    .figure-box svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .options-list { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    @media (min-width: 640px) { .options-list.grid-2 { grid-template-columns: 1fr 1fr; } }
+    
+    .option-btn {
+      text-align: left;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.94rem;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+      font-weight: 400;
+    }
+
+    .option-btn:hover:not(:disabled) { border-color: var(--primary); background: #eff6ff; }
+    .option-btn.selected { border-color: var(--primary); background: #dbeafe; font-weight: 600; }
+    .option-btn.correct { border-color: var(--success) !important; background: var(--success-bg) !important; color: #14532d !important; font-weight: 600; }
+    .option-btn.wrong { border-color: var(--danger) !important; background: var(--danger-bg) !important; color: #7f1d1d !important; }
+
+    .tf-list { display: flex; flex-direction: column; gap: 10px; }
+    .tf-row {
+      display: flex; flex-direction: column; gap: 8px; padding: 12px;
+      border-radius: 8px; background: #f8fafc; border: 1.5px solid var(--border);
+    }
+    @media (min-width: 600px) { .tf-row { flex-direction: row; justify-content: space-between; align-items: center; } }
+    .tf-row.row-correct { border-color: var(--success); background: #f0fdf4; }
+    .tf-row.row-wrong { border-color: var(--danger); background: #fef2f2; }
+    .tf-statement { font-size: 0.94rem; flex: 1; padding-right: 8px; }
+    .tf-buttons { display: flex; gap: 8px; flex-shrink: 0; }
+    .tf-btn {
+      min-width: 72px; padding: 7px 12px; border-radius: 6px; font-size: 0.88rem;
+      font-weight: 600; background: #ffffff; border: 1.5px solid var(--border); color: var(--text);
+    }
+    .tf-btn:hover:not(:disabled) { border-color: var(--primary); background: #eff6ff; }
+    .tf-btn.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .tf-btn.correct-choice { background: var(--success) !important; color: #fff !important; border-color: var(--success) !important; }
+    .tf-btn.wrong-choice { background: var(--danger) !important; color: #fff !important; border-color: var(--danger) !important; }
+
+    .sa-wrapper {
+      background: #f8fafc; border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 14px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .sa-wrapper.sa-correct { border-color: var(--success); background: #f0fdf4; }
+    .sa-wrapper.sa-wrong { border-color: var(--danger); background: #fef2f2; }
+    .sa-input-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .sa-input {
+      flex: 1; min-width: 180px; padding: 9px 12px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: 0.96rem; font-weight: 600; color: var(--text); outline: none;
+    }
+    .sa-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); }
+
+    .feedback {
+      margin-top: 12px; font-size: 0.9rem; font-weight: 600; padding: 9px 12px;
+      border-radius: 6px; display: none;
+    }
+    .feedback.show { display: block; }
+    .feedback.ok { color: var(--success); background: var(--success-bg); }
+    .feedback.partial { color: var(--warning); background: var(--warning-bg); }
+    .feedback.err { color: var(--danger); background: var(--danger-bg); }
+
+    .explanation-box {
+      margin-top: 10px; padding: 12px 14px; border-radius: 8px; background: #eff6ff;
+      border-left: 4px solid var(--primary); font-size: 0.91rem; color: #1e3a8a; line-height: 1.6; white-space: pre-line; display: none;
+    }
+    .explanation-box.show { display: block; }
+    .explanation-title { font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+
+    .bottom-tool-card {
+      background: var(--card); border-radius: 12px; padding: 20px; margin-top: 18px; margin-bottom: 36px;
+      border: 2px dashed var(--primary); text-align: center; box-shadow: 0 2px 10px rgba(37, 99, 235, 0.08);
+    }
+    .bottom-tool-title { font-size: 1.02rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .bottom-tool-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 14px; }
+    .bottom-tool-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+
+    .btn-scroll-top-fast { background: var(--primary); color: #fff; border: none; padding: 10px 18px; border-radius: 8px; font-size: 0.94rem; font-weight: 600; }
+    .floating-top-btn {
+      position: fixed; bottom: 20px; right: 20px; z-index: 50; background: var(--primary); color: #fff; border: none;
+      border-radius: 999px; padding: 10px 16px; font-size: 0.88rem; font-weight: 600; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35); display: none;
+    }
+    .floating-top-btn.visible { display: inline-flex; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-card">
+      <div class="school-bar">
+        <span>Đề cương ôn tập 2026-2027</span>
+        <span>Bộ môn Vật lí</span>
+      </div>
+      <h1 id="quizTitle">ĐỀ CƯƠNG ÔN GIỮA KỲ I 2026-2027 – VẬT LÍ</h1>
+      <div class="subtitle" id="quizSubtitle">Tổng hợp Lý thuyết & Bài tập: Chương 1 (Vật lí nhiệt) & Chương 2 (Khí lí tưởng)</div>
+
+      <div class="controls">
+        <div class="filter-group">
+          <select id="topicSelect" onchange="initQuiz(false)"></select>
+
+          <select id="typeSelect" onchange="initQuiz(false)">
+            <option value="all">Tất cả dạng câu hỏi</option>
+            <option value="mcq">Phần I: Trắc nghiệm ABCD</option>
+            <option value="tf">Phần II: Trắc nghiệm Đúng / Sai</option>
+            <option value="sa">Phần III: Trắc nghiệm Trả lời ngắn</option>
+          </select>
+
+          <select id="modeSelect" onchange="initQuiz(false)">
+            <option value="instant">Chế độ: Làm câu nào biết đúng/sai ngay</option>
+            <option value="exam">Chế độ: Làm hết rồi bấm Chấm điểm</option>
+          </select>
+        </div>
+
+        <div class="action-group">
+          <button class="btn-primary" id="submitBtn" onclick="submitExam()" style="display:none;">Nộp bài & Chấm điểm</button>
+          <button class="btn-warning" id="retryWrongBtn" onclick="retryWrong()" style="display:none;">Làm lại câu sai</button>
+          <button class="btn-outline" onclick="initQuiz(true)">Đảo thứ tự câu</button>
+          <button class="btn-outline" onclick="initQuiz(false)">Làm lại từ đầu</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <span id="progressText">Đã làm: 0 / 0</span>
+      <div class="stat-group">
+        <span class="stat-badge stat-correct" id="correctText">Tối đa: 0</span>
+        <span class="stat-badge stat-wrong" id="wrongText">Chưa tối đa: 0</span>
+        <span class="stat-badge stat-score" id="scoreText">Điểm: 0.00 / 0.00</span>
+      </div>
+    </div>
+
+    <div id="quizContainer"></div>
+
+    <div class="bottom-tool-card">
+      <div class="bottom-tool-title">Công cụ cuối trang</div>
+      <div class="bottom-tool-desc">Khi làm xong bài ở cuối trang, sử dụng nút bên dưới để chấm điểm hoặc kéo lên đầu trang.</div>
+      <div class="bottom-tool-actions">
+        <button class="btn-primary" id="bottomSubmitBtn" onclick="submitExam()" style="display:none;">Nộp bài & Chấm điểm ngay</button>
+        <button class="btn-warning" id="bottomRetryBtn" onclick="retryWrong()" style="display:none;">Làm lại câu sai</button>
+        <button class="btn-scroll-top-fast" onclick="scrollToTopFast()">⚡ Kéo lên đầu trang</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="floating-top-btn" id="floatingTopBtn" onclick="scrollToTopFast()">⬆ Lên đầu trang</button>
+
+  <script>
+    const QUIZ_CONFIG = { mcqPoint: 0.25, tfPoints: [0, 0.1, 0.25, 0.5, 1.0], saPoint: 0.25 };
+    const TOPIC_CH1 = "CHƯƠNG 1: VẬT LÍ NHIỆT";
+    const TOPIC_CH2 = "CHƯƠNG 2: KHÍ LÍ TƯỞNG";
+
+    // CÁC HÌNH VẼ ĐÃ ĐƯỢC CHUẨN HÓA VÀ FIX LỖI TỌA ĐỘ
+    const SVG_CH1_Q5 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-weight="bold">
+          <text x="30" y="70" font-size="16">Rắn</text>
+          <text x="135" y="70" font-size="16">Lỏng</text>
+          <text x="240" y="70" font-size="16">Khí</text>
+          <path d="M 65 60 L 125 60" stroke="#1e293b" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          <text x="88" y="52" font-size="12" fill="#dc2626">(1)</text>
+          <path d="M 125 70 L 65 70" stroke="#1e293b" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          <text x="88" y="85" font-size="12" fill="#dc2626">(2)</text>
+          <path d="M 180 60 L 235 60" stroke="#1e293b" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          <text x="200" y="52" font-size="12" fill="#dc2626">(3)</text>
+          <path d="M 235 70 L 180 70" stroke="#1e293b" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          <text x="200" y="85" font-size="12" fill="#dc2626">(4)</text>
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#1e293b" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH1_Q15 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="12">
+          <g stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3">
+            <line x1="50" y1="30" x2="350" y2="30" />
+            <line x1="50" y1="90" x2="350" y2="90" />
+            <line x1="50" y1="210" x2="350" y2="210" />
+            <line x1="90" y1="10" x2="90" y2="210" />
+            <line x1="290" y1="10" x2="290" y2="210" />
+            <line x1="330" y1="10" x2="330" y2="210" />
+          </g>
+          <line x1="50" y1="10" x2="50" y2="210" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="50" y1="210" x2="370" y2="210" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <polyline points="50,174 90,90 290,90 330,30" fill="none" stroke="#2563eb" stroke-width="3" />
+          <text x="10" y="20" font-weight="bold">t (°C)</text>
+          <text x="320" y="230" font-weight="bold">T (phút)</text>
+          <text x="25" y="178">20</text>
+          <text x="20" y="94">100</text>
+          <text x="20" y="34">120</text>
+          <text x="45" y="225">0</text>
+          <text x="85" y="225">4</text>
+          <text x="280" y="225">14</text>
+          <text x="325" y="225">16</text>
+          <text x="55" y="180" font-weight="bold">A</text>
+          <text x="80" y="85" font-weight="bold">B</text>
+          <text x="285" y="105" font-weight="bold">C</text>
+          <text x="335" y="35" font-weight="bold">D</text>
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH1_Q20 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 450 250" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="11">
+          <line x1="50" y1="10" x2="50" y2="220" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="50" y1="220" x2="430" y2="220" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="15" y="20" font-weight="bold">m (kg)</text>
+          <text x="420" y="235" font-weight="bold">t (s)</text>
+          
+          <g stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2,2">
+            <!-- Grid lines X -->
+            <line x1="110" y1="10" x2="110" y2="220" />
+            <line x1="170" y1="10" x2="170" y2="220" />
+            <line x1="230" y1="10" x2="230" y2="220" />
+            <line x1="290" y1="10" x2="290" y2="220" />
+            <line x1="350" y1="10" x2="350" y2="220" />
+            <!-- Grid lines Y -->
+            <line x1="50" y1="50" x2="430" y2="50" />
+            <line x1="50" y1="75" x2="430" y2="75" />
+            <line x1="50" y1="100" x2="430" y2="100" />
+            <line x1="50" y1="125" x2="430" y2="125" />
+            <line x1="50" y1="150" x2="430" y2="150" />
+            <line x1="50" y1="175" x2="430" y2="175" />
+            <line x1="50" y1="200" x2="430" y2="200" />
+          </g>
+
+          <text x="18" y="55">0.120</text>
+          <text x="18" y="79">0.119</text>
+          <text x="18" y="104">0.118</text>
+          <text x="18" y="129">0.117</text>
+          <text x="18" y="154">0.116</text>
+          <text x="18" y="179">0.115</text>
+          <text x="18" y="204">0.114</text>
+          
+          <text x="45" y="235">0</text>
+          <text x="100" y="235">100</text>
+          <text x="160" y="235">200</text>
+          <text x="220" y="235">300</text>
+          <text x="280" y="235">400</text>
+          <text x="340" y="235">500</text>
+          <text x="400" y="235">600</text>
+
+          <line x1="50" y1="50" x2="410" y2="150" stroke="#dc2626" stroke-width="2.5" />
+          <circle cx="50" cy="50" r="3" fill="#1e293b" />
+          <circle cx="110" cy="66.6" r="3" fill="#1e293b" />
+          <circle cx="230" cy="100" r="3" fill="#1e293b" />
+          <circle cx="350" cy="133.3" r="3" fill="#1e293b" />
+          <circle cx="410" cy="150" r="3" fill="#1e293b" />
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH1_TF_Q2 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-weight="bold">
+          <line x1="30" y1="20" x2="30" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="30" y1="170" x2="270" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="35" y="30" font-size="12">Nhiệt độ</text>
+          <text x="200" y="185" font-size="12">Thời gian</text>
+          
+          <line x1="30" y1="90" x2="160" y2="90" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <text x="15" y="95" font-size="12">t<tspan baseline-shift="sub" font-size="9">c</tspan></text>
+          
+          <!-- Curve 1 (dashed) -->
+          <path d="M 35 150 Q 120 150 160 90 L 160 140" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4,3"/>
+          <text x="165" y="145" font-size="12" fill="#64748b">1</text>
+          
+          <!-- Curve 2 (dashed) - Amorphous -->
+          <path d="M 35 150 Q 120 140 180 40" fill="none" stroke="#0f766e" stroke-width="2.5" stroke-dasharray="5,4"/>
+          <text x="120" y="70" font-size="14" fill="#0f766e">2</text>
+          
+          <!-- Curve 3 (solid) - Crystalline -->
+          <path d="M 35 150 Q 60 90 90 90 L 160 90 Q 200 90 230 40" fill="none" stroke="#dc2626" stroke-width="2.5" />
+          <text x="210" y="75" font-size="14" fill="#dc2626">3</text>
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH1_TF_Q7 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="12">
+          <line x1="40" y1="20" x2="40" y2="160" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="40" y1="160" x2="320" y2="160" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="10" y="30" font-weight="bold">t°C</text>
+          <text x="270" y="180" font-weight="bold">T (phút)</text>
+          <text x="15" y="105">10</text>
+          <text x="15" y="65">20</text>
+          <text x="30" y="165">0</text>
+          <text x="100" y="175">1</text>
+          <text x="140" y="175">2</text>
+          <text x="180" y="175">3</text>
+          <text x="220" y="175">4</text>
+          <line x1="40" y1="60" x2="220" y2="60" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="220" y1="160" x2="220" y2="60" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="40" y1="100" x2="220" y2="60" stroke="#2563eb" stroke-width="2.5" />
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH1_TF_Q9 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="12">
+          <line x1="40" y1="20" x2="40" y2="160" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="40" y1="160" x2="320" y2="160" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="10" y="30" font-weight="bold">t (°C)</text>
+          <text x="280" y="180" font-weight="bold">Q (kJ)</text>
+          <text x="15" y="130">20</text>
+          <text x="15" y="70">80</text>
+          <text x="80" y="180">180</text>
+          <text x="220" y="180">1 260</text>
+          <line x1="40" y1="70" x2="100" y2="70" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="100" y1="160" x2="100" y2="70" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="240" y1="160" x2="240" y2="70" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <polyline points="40,125 100,70 240,70 260,30" fill="none" stroke="#2563eb" stroke-width="2.5" />
+          <text x="55" y="125" font-weight="bold">A</text>
+          <text x="95" y="60" font-weight="bold">B</text>
+          <text x="230" y="60" font-weight="bold">C</text>
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH2_Q2 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="12">
+          <!-- Hình 1 -->
+          <g transform="translate(20, 20)">
+            <text x="50" y="170" font-weight="bold" font-size="14">Hình 1</text>
+            <line x1="20" y1="0" x2="20" y2="140" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <line x1="20" y1="140" x2="160" y2="140" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <text x="0" y="10" font-weight="bold">p</text><text x="165" y="145" font-weight="bold">V</text>
+            <text x="-5" y="105">p₀</text><text x="-12" y="45">2p₀</text>
+            <text x="50" y="155">V₀</text><text x="100" y="155">2V₀</text>
+            <polyline points="60,100 120,100 60,40" fill="none" stroke="#f59e0b" stroke-width="2" />
+            <polygon points="90,97 96,100 90,103" fill="#f59e0b" />
+            <polygon points="87,73 92,76 87,79" fill="#f59e0b" transform="rotate(-45 92 76)" />
+          </g>
+          <!-- Hình 2 -->
+          <g transform="translate(220, 20)">
+            <text x="50" y="170" font-weight="bold" font-size="14">Hình 2</text>
+            <line x1="20" y1="0" x2="20" y2="140" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <line x1="20" y1="140" x2="160" y2="140" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <text x="0" y="10" font-weight="bold">p</text><text x="165" y="145" font-weight="bold">T</text>
+            <polyline points="60,100 120,40 120,100" fill="none" stroke="#f59e0b" stroke-width="2" />
+            <polygon points="87,73 92,76 87,79" fill="#f59e0b" transform="rotate(-45 92 76)" />
+            <polygon points="117,75 120,69 123,75" fill="#f59e0b" />
+          </g>
+          <!-- Hình 3 -->
+          <g transform="translate(420, 20)">
+            <text x="50" y="170" font-weight="bold" font-size="14">Hình 3</text>
+            <line x1="20" y1="0" x2="20" y2="140" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <line x1="20" y1="140" x2="160" y2="140" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <text x="0" y="10" font-weight="bold">V</text><text x="165" y="145" font-weight="bold">T</text>
+            <text x="-5" y="105">V₀</text><text x="-12" y="45">2V₀</text>
+            <text x="50" y="155">T₀</text><text x="100" y="155">2T₀</text>
+            <polyline points="60,100 120,40 120,100" fill="none" stroke="#f59e0b" stroke-width="2" />
+            <polygon points="87,73 92,76 87,79" fill="#f59e0b" transform="rotate(-45 92 76)" />
+            <polygon points="117,75 120,81 123,75" fill="#f59e0b" />
+          </g>
+          <!-- Hình 4 -->
+          <g transform="translate(620, 20)">
+            <text x="50" y="170" font-weight="bold" font-size="14">Hình 4</text>
+            <line x1="20" y1="0" x2="20" y2="140" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <line x1="20" y1="140" x2="160" y2="140" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <text x="0" y="10" font-weight="bold">p</text><text x="165" y="145" font-weight="bold">V</text>
+            <path d="M 60 40 Q 70 100 120 100 L 60 100" fill="none" stroke="#f59e0b" stroke-width="2" />
+            <polygon points="82,72 87,75 82,78" fill="#f59e0b" transform="rotate(45 87 75)" />
+            <polygon points="90,97 84,100 90,103" fill="#f59e0b" />
+          </g>
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH2_Q12 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+          <line x1="30" y1="20" x2="30" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="30" y1="170" x2="320" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="15" y="25" font-weight="bold">V</text><text x="320" y="185" font-weight="bold">T (K)</text>
+          <text x="15" y="185" font-weight="bold">O</text>
+          <line x1="30" y1="170" x2="70" y2="135" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="70" y1="135" x2="190" y2="30" stroke="#1e293b" stroke-width="1.5" />
+          <text x="200" y="35" font-weight="bold">p₁</text>
+          <line x1="30" y1="170" x2="75" y2="140" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="75" y1="140" x2="240" y2="70" stroke="#1e293b" stroke-width="1.5" />
+          <text x="250" y="70" font-weight="bold">p₂</text>
+          <line x1="30" y1="170" x2="80" y2="150" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="80" y1="150" x2="270" y2="110" stroke="#1e293b" stroke-width="1.5" />
+          <text x="280" y="115" font-weight="bold">p₃</text>
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH2_TF_Q2 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="12">
+          <!-- Hình a -->
+          <g transform="translate(40, 30)">
+            <text x="100" y="200" font-weight="bold" font-size="14">Hình a</text>
+            <line x1="30" y1="0" x2="30" y2="150" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <line x1="30" y1="150" x2="200" y2="150" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <text x="0" y="10" font-weight="bold">p (atm)</text><text x="210" y="155" font-weight="bold">V (l)</text>
+            <text x="15" y="165">O</text>
+            <text x="-5" y="45">2</text><text x="-15" y="125">0.5</text>
+            <text x="65" y="165">1</text>
+            
+            <line x1="30" y1="40" x2="70" y2="40" stroke="#94a3b8" stroke-dasharray="4,4" />
+            <line x1="70" y1="150" x2="70" y2="40" stroke="#94a3b8" stroke-dasharray="4,4" />
+            <line x1="30" y1="120" x2="160" y2="120" stroke="#94a3b8" stroke-dasharray="4,4" />
+            <line x1="160" y1="150" x2="160" y2="120" stroke="#94a3b8" stroke-dasharray="4,4" />
+
+            <path d="M 70 40 Q 80 120 160 120" fill="none" stroke="#1e293b" stroke-width="2.5" />
+            <polygon points="90,83 95,89 88,91" fill="#1e293b" transform="rotate(-20 95 89)" />
+            
+            <line x1="160" y1="120" x2="160" y2="40" stroke="#1e293b" stroke-width="2.5" />
+            <polygon points="157,80 160,74 163,80" fill="#1e293b" />
+            
+            <line x1="160" y1="40" x2="70" y2="40" stroke="#1e293b" stroke-width="2.5" />
+            <polygon points="120,37 114,40 120,43" fill="#1e293b" />
+
+            <text x="75" y="30" font-weight="bold">(1)</text>
+            <text x="170" y="125" font-weight="bold">(2)</text>
+            <text x="170" y="45" font-weight="bold">(3)</text>
+            <text x="85" y="70" fill="#64748b" font-style="italic">hypebol</text>
+          </g>
+          <!-- Hình b -->
+          <g transform="translate(340, 30)">
+            <text x="100" y="200" font-weight="bold" font-size="14">Hình b</text>
+            <line x1="30" y1="0" x2="30" y2="150" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <line x1="30" y1="150" x2="200" y2="150" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+            <text x="35" y="10" font-weight="bold">V (l)</text><text x="210" y="155" font-weight="bold">T (K)</text>
+            <text x="15" y="165">O</text><text x="15" y="125">1</text>
+            
+            <line x1="30" y1="120" x2="70" y2="120" stroke="#94a3b8" stroke-dasharray="4,4" />
+            <line x1="70" y1="150" x2="70" y2="120" stroke="#94a3b8" stroke-dasharray="4,4" />
+            <line x1="30" y1="150" x2="70" y2="120" stroke="#94a3b8" stroke-dasharray="4,4" />
+
+            <line x1="70" y1="120" x2="70" y2="40" stroke="#1e293b" stroke-width="2.5" />
+            <polygon points="67,80 70,74 73,80" fill="#1e293b" />
+
+            <line x1="70" y1="40" x2="160" y2="40" stroke="#1e293b" stroke-width="2.5" />
+            <polygon points="110,37 116,40 110,43" fill="#1e293b" />
+
+            <line x1="160" y1="40" x2="70" y2="120" stroke="#1e293b" stroke-width="2.5" />
+            <polygon points="118,74 113,80 120,83" fill="#1e293b" />
+
+            <text x="80" y="135" font-weight="bold">(1)</text>
+            <text x="80" y="35" font-weight="bold">(2)</text>
+            <text x="170" y="45" font-weight="bold">(3)</text>
+          </g>
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH2_TF_Q3 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+          <line x1="40" y1="20" x2="40" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="40" y1="170" x2="300" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="15" y="30" font-weight="bold">V (m³)</text>
+          <text x="250" y="160" font-weight="bold">p (kN/m²)</text>
+          <text x="20" y="185" font-weight="bold">O</text>
+          <text x="10" y="135">2,4</text>
+          <text x="115" y="185">0,5</text>
+          <text x="175" y="185">1</text>
+          <line x1="40" y1="130" x2="170" y2="130" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="170" y1="170" x2="170" y2="130" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="110" y1="170" x2="110" y2="85" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <path d="M 50 40 Q 80 130 250 150" fill="none" stroke="#1e293b" stroke-width="2.5" />
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH2_TF_Q4 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="12">
+          <line x1="40" y1="20" x2="40" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="40" y1="170" x2="300" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="10" y="15" font-weight="bold">p (atm)</text>
+          <text x="310" y="185" font-weight="bold">V (l)</text>
+          <text x="25" y="185">O</text>
+          <text x="25" y="55">6</text>
+          <text x="20" y="135">p₂</text>
+          
+          <line x1="40" y1="50" x2="70" y2="50" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="40" y1="130" x2="130" y2="130" stroke="#94a3b8" stroke-dasharray="4,4" />
+          
+          <line x1="70" y1="170" x2="70" y2="50" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <text x="65" y="185">V₁</text>
+          
+          <line x1="130" y1="170" x2="130" y2="50" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <text x="125" y="185">V₂</text>
+
+          <line x1="190" y1="170" x2="190" y2="50" stroke="#94a3b8" stroke-dasharray="4,4" />
+          
+          <line x1="250" y1="170" x2="250" y2="50" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <text x="245" y="185">V₃</text>
+
+          <path d="M 70 50 Q 80 130 130 130" fill="none" stroke="#1e293b" stroke-width="2.5" />
+          <polygon points="90,95 97,99 92,103" fill="#1e293b" transform="rotate(30 97 99)" />
+          <line x1="130" y1="130" x2="250" y2="130" stroke="#1e293b" stroke-width="2.5" />
+          <polygon points="200,127 206,130 200,133" fill="#1e293b" />
+          <text x="75" y="45" font-weight="bold">(1)</text>
+          <text x="110" y="145" font-weight="bold">(2)</text>
+          <text x="260" y="135" font-weight="bold">(3)</text>
+        </svg>
+      </div>
+    `;
+
+    const SVG_CH2_SA_Q6 = `
+      <div class="figure-box">
+        <svg viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+          <line x1="40" y1="20" x2="40" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="40" y1="170" x2="300" y2="170" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="15" y="30" font-weight="bold">p</text>
+          <text x="310" y="185" font-weight="bold">V</text>
+          <text x="20" y="185" font-weight="bold">O</text>
+          <text x="15" y="145">p₀</text>
+          <text x="95" y="185">V₀</text>
+          <text x="235" y="185">3V₀</text>
+          
+          <line x1="40" y1="140" x2="100" y2="140" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="100" y1="170" x2="100" y2="60" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="40" y1="60" x2="100" y2="60" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="240" y1="170" x2="240" y2="100" stroke="#94a3b8" stroke-dasharray="4,4" />
+          <line x1="40" y1="170" x2="100" y2="140" stroke="#94a3b8" stroke-dasharray="4,4" />
+
+          <!-- A to B (vertical up) -->
+          <line x1="100" y1="140" x2="100" y2="60" stroke="#1e293b" stroke-width="2.5" />
+          <polygon points="97,100 100,94 103,100" fill="#1e293b" />
+          <text x="80" y="135" font-weight="bold">A</text>
+          <text x="75" y="65" font-weight="bold">B</text>
+          
+          <!-- B to C (curved isotherm) -->
+          <line x1="100" y1="60" x2="240" y2="100" stroke="#1e293b" stroke-width="2.5" />
+          <polygon points="170,82 176,86 170,89" fill="#1e293b" transform="rotate(15 176 86)" />
+          <text x="250" y="105" font-weight="bold">C</text>
+
+          <!-- C to A (straight down-left through origin) -->
+          <line x1="240" y1="100" x2="100" y2="140" stroke="#1e293b" stroke-width="2.5" />
+          <polygon points="175,115 169,119 175,123" fill="#1e293b" transform="rotate(15 169 119)" />
+          <line x1="100" y1="140" x2="40" y2="157" stroke="#94a3b8" stroke-dasharray="4,4" />
+        </svg>
+      </div>
+    `;
+
+    const allQuestions = [
+      // ==================== CHƯƠNG 1 ====================
+      // PHẦN I
+      { type: "mcq", topicName: TOPIC_CH1, ans: "C", q: "Câu 1: Năm 1827, khi quan sát các hạt phấn hoa trong nước bằng kính hiển vi, Robert Brown đã nhận thấy", options: { A: "A. chúng có lúc đứng yên, có lúc chuyển động.", B: "B. chúng luôn đứng yên.", C: "C. chúng chuyển động không ngừng.", D: "D. chúng chỉ dao động quanh một vị trí cân bằng." }, explanation: "Hiện tượng Brown cho thấy các hạt phân hoa lơ lửng luôn chuyển động hỗn loạn không ngừng do va chạm từ phân tử nước." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "A", q: "Câu 2: Chất nào sau đây có thể tích xác định?", options: { A: "A. Chất rắn và chất lỏng.", B: "B. Chất khí.", C: "C. Chất rắn và chất khí.", D: "D. Chất lỏng và chất khí." }, explanation: "Chất rắn và chất lỏng có thể tích xác định (chất rắn có thêm hình dạng xác định). Khí không có thể tích xác định." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "C", q: "Câu 3: Cồn y tế chuyển từ thể lỏng sang thể khí rất nhanh ở điều kiện thông thường. Khi xoa cồn vào da, ta cảm thấy lạnh ở vùng da đó vì cồn", options: { A: "A. khi bay hơi kéo theo lượng nước chỗ da đó ra khỏi cơ thể.", B: "B. khi bay hơi tạo ra dòng nước mát tại chỗ da đó.", C: "C. thu nhiệt lượng từ cơ thể qua chỗ da đó để bay hơi.", D: "D. toả nhiệt lượng vào chỗ da đó khi bay hơi." }, explanation: "Bay hơi là quá trình thu nhiệt. Cồn bay hơi nhanh sẽ lấy nhiệt từ vùng da tiếp xúc làm da lạnh." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "A", q: "Câu 4: Hình dưới là một nhiệt kế thủy ngân dùng để đo nhiệt độ. Nhiệt kế này hoạt động dựa trên", options: { A: "A. sự nở vì nhiệt.", B: "B. hiện tượng mao dẫn.", C: "C. hiện tượng khuếch tán.", D: "D. sự nóng chảy." }, explanation: "Nhiệt kế thủy ngân hoạt động dựa trên sự nở vì nhiệt của chất lỏng." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "C", q: "Câu 5: Cho sơ đồ quá trình chuyển thể như hình bên. Kết luận nào sau đây là đúng?", svgHtml: SVG_CH1_Q5, options: { A: "A. (3) là quá trình ngưng tụ.", B: "B. (2) là quá trình ngưng kết.", C: "C. (1) là quá trình nóng chảy.", D: "D. (4) là quá trình thăng hoa." }, explanation: "(1) Rắn sang Lỏng là nóng chảy. (2) là đông đặc. (3) là hóa hơi. (4) là ngưng tụ." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "A", q: "Câu 6: Nhận định nào sau đây là đúng?", options: { A: "A. Vật làm bằng chất có nhiệt dung riêng nhỏ thì vật đó dễ nóng lên và nhanh nguội đi.", B: "B. Vật làm bằng chất có nhiệt dung riêng nhỏ thì vật đó dễ nóng lên và lâu nguội đi.", C: "C. Vật làm bằng chất có nhiệt dung riêng nhỏ thì vật đó khó nóng lên và nhanh nguội đi.", D: "D. Vật làm bằng chất có nhiệt dung riêng nhỏ thì vật đó khó nóng lên và lâu nguội đi." }, explanation: "Nhiệt dung riêng nhỏ nghĩa là cần ít nhiệt lượng để thay đổi 1K, do đó dễ nóng lên và nhanh nguội đi." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "D", q: "Câu 7: Rạng sáng ngày 1/12/2014 một đường ống nước ở Bắc Kinh bị vỡ. Sự cố xảy ra hiện tượng vỡ đường ống nước là do", options: { A: "A. trời lạnh làm đường ống bị cứng giòn và rạn nứt.", B: "B. tuyết rơi nhiều đè nặng lên thành ống.", C: "C. sự chênh lệch nhiệt độ bên trong và bên ngoài làm nứt vỡ.", D: "D. thể tích nước khi đông đặc tăng lên gây ra áp lực lớn lên thành ống." }, explanation: "Khi nước đông đặc thành đá, thể tích tăng lên tạo áp lực cực lớn làm vỡ ống." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "B", q: "Câu 8: Biết nhiệt độ sôi, nhiệt dung riêng và nhiệt hóa hơi riêng của nước là 100°C, 4200 J/kg.K và 2,3.10⁶ J/kg. Nhiệt lượng cần cung cấp để hóa hơi hoàn toàn 2 kg nước ở 20°C là", options: { A: "A. 2,6.10⁶ J", B: "B. 5,3.10⁶ J", C: "C. 26.10⁶ J", D: "D. 53.10⁶ J" }, explanation: "Q = mcΔt + mL = 2 × 4200 × 80 + 2 × 2,3.10⁶ = 672,000 + 4,600,000 = 5,272,000 J ≈ 5,3.10⁶ J." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "A", q: "Câu 9: Mỗi độ chia (1K) trong thang Kelvin bằng....... của khoảng cách giữa nhiệt độ không tuyệt đối và nhiệt độ mà nước tinh khiết tồn tại đồng thời ở thể rắn, lỏng và hơi.", options: { A: "A. 1/273,16", B: "B. 1/100", C: "C. 1/10", D: "D. 1/273,15" }, explanation: "Định nghĩa chuẩn của Kelvin: 1K bằng 1/273,16 của nhiệt độ điểm ba của nước." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "B", q: "Câu 10: Nội năng của một vật phụ thuộc vào:", options: { A: "A. Nhiệt độ, áp suất và thể tích.", B: "B. Nhiệt độ và thể tích.", C: "C. Nhiệt độ và áp suất.", D: "D. Nhiệt độ, áp suất và khối lượng." }, explanation: "Nội năng bằng tổng động năng (phụ thuộc nhiệt độ) và thế năng tương tác (phụ thuộc thể tích)." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "B", q: "Câu 11: Đặc điểm và tính chất nào dưới đây không liên quan đến chất rắn kết tinh?", options: { A: "A. Có cấu trúc tinh thể.", B: "B. Không có nhiệt độ nóng chảy xác định.", C: "C. Có nhiệt độ nóng chảy xác định.", D: "D. Có dạng hình học xác định." }, explanation: "Chất rắn kết tinh luôn CÓ nhiệt độ nóng chảy xác định." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "C", q: "Câu 12: Ta cho vài viên đá vào một cốc nước. Sau một lúc bên ngoài thành cốc có các giọt nước nhỏ li ti bám vào. Hiện tượng đó là vì?", options: { A: "A. nước trong cốc thấm ra ngoài.", B: "B. thành cốc bị dính ướt các giọt nước.", C: "C. hơi nước trong không khí gặp lạnh ngưng tụ trên thành cốc.", D: "D. nước trong cốc bay hơi và ngưng tụ lại." }, explanation: "Hơi nước trong không khí khi chạm vào bề mặt cốc lạnh sẽ bị ngưng tụ thành nước lỏng." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "B", q: "Câu 13: Một khối nước đá ở 0°C nhận nhiệt lượng 500 kJ thì 25% khối lượng nước đá đã bị nóng chảy. Biết nhiệt nóng chảy là 3,3.10⁵ J/kg. Khối lượng m₀ là?", options: { A: "A. 1,51 kg.", B: "B. 6,06 kg.", C: "C. 1,51 g.", D: "D. 6,06 g." }, explanation: "Q = 0.25 × m₀ × λ ⇒ 500,000 = 0.25 × m₀ × 330,000 ⇒ m₀ = 6.06 kg." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "A", q: "Câu 14: Thả một quả cầu nhôm m = 0,15 kg (100°C) vào cốc nước (20°C). Nhiệt độ cân bằng là 25°C. Tính khối lượng nước? (c_Al = 880, c_nước = 4200)", options: { A: "A. 0,47 kg", B: "B. 0,75 kg", C: "C. 0,57 kg", D: "D. 0,74 kg" }, explanation: "m_nước × 4200 × (25 - 20) = 0.15 × 880 × (100 - 25) ⇒ 21000 × m_nước = 9900 ⇒ m_nước ≈ 0.47 kg." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "B", q: "Câu 15: Đồ thị hình bên biểu diễn sự thay đổi nhiệt độ của một lượng nước đun sôi đến khi chuyển thể hoàn toàn. Nhận định nào sau đây đúng?", svgHtml: SVG_CH1_Q15, options: { A: "A. Trong 14 phút đầu tiên, nhiệt độ của nước tăng liên tục.", B: "B. Nước bắt đầu sôi từ phút thứ 4.", C: "C. Nước bắt đầu hoá hơi từ phút thứ 14 đến phút thứ 16.", D: "D. Trong 4 phút đầu tiên nước sôi và tăng nhiệt độ đến 100°C." }, explanation: "Từ phút thứ 4 nhiệt độ đạt 100°C và bắt đầu đi ngang (quá trình sôi)." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "B", q: "Câu 16: Cách nào sau đây không làm thay đổi nội năng của vật?", options: { A: "A. Làm lạnh vật.", B: "B. Đưa vật lên cao.", C: "C. Cọ xát vật lên mặt bàn.", D: "D. Đốt nóng vật." }, explanation: "Đưa lên cao chỉ thay đổi cơ năng (thế năng), không làm thay đổi nội năng." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "B", q: "Câu 17: Khoảng 70% bề mặt của Trái Đất được bao phủ bởi nước. Vì có ...(1)... nên lượng nước này hấp thụ năng lượng nhiệt khổng lồ mà vẫn giữ cho ...(2)... của Trái Đất tăng không nhanh.", options: { A: "A. 'nhiệt độ sôi lớn'; 'nhiệt độ'.", B: "B. 'nhiệt dung riêng lớn'; 'nhiệt độ'.", C: "C. 'nhiệt độ sôi lớn'; 'áp suất'.", D: "D. 'nhiệt dung riêng lớn'; 'áp suất'." }, explanation: "Nước có nhiệt dung riêng rất lớn, giúp ổn định nhiệt độ khí hậu." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "A", q: "Câu 18: Hình sau là đồ thị phác họa sự thay đổi nhiệt độ theo thời gian trong quá trình chuyển thể từ rắn sang lỏng của chất rắn kết tinh và vô định hình tương ứng lần lượt là", svgHtml: SVG_CH1_TF_Q2, options: { A: "A. đường (3) và đường (2).", B: "B. đường (3) và đường (1).", C: "C. đường (1) và đường (2).", D: "D. đường (2) và đường (3)." }, explanation: "Đường 3 có đoạn T không đổi (nằm ngang) là kết tinh. Đường 2 tăng liên tục là vô định hình." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "A", q: "Câu 19: Đổ 350g thiếc lỏng (232°C) vào 330g nước (7°C) đựng trong NLK (C=100 J/K). Cân bằng ở 32°C. c_nước = 4,2, c_thiếc = 0,23. Nhiệt nóng chảy của thiếc gần nhất với", options: { A: "A. 60,14 J/g.", B: "B. 66,25 J/g.", C: "C. 64,11 J/g.", D: "D. 62,48 J/g." }, explanation: "Q_thu = 330×4.2×25 + 100×25 = 37150 J. Q_tỏa = 350.λ + 350×0.23×200 = 350.λ + 16100 J. ⇒ λ = 21050/350 = 60.14 J/g." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "C", q: "Câu 20: Đồ thị quan hệ khối lượng nước và thời gian hóa hơi. Ấm 10W. Nhiệt hoá hơi riêng của nước đo được gần đúng bằng", svgHtml: SVG_CH1_Q20, options: { A: "A. 3.10⁵ J/kg.", B: "B. 3.10⁶ J/kg.", C: "C. 1,5.10⁶ J/kg.", D: "D. 2.10⁶ J/kg." }, explanation: "Đồ thị giảm 0.004kg trong 600s. Q = P.t = 6000 J. L = Q / Δm = 6000 / 0.004 = 1.5.10⁶ J/kg." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "D", q: "Câu 21: Để xác định nhiệt nóng chảy riêng của một chất bằng thực nghiệm, người ta cần phải đo các đại lượng nào?", options: { A: "A. nhiệt lượng cần cung cấp, khối lượng và độ tăng nhiệt độ của vật.", B: "B. khối lượng chất cần đo trong thí nghiệm", C: "C. nhiệt lượng cần cung cấp để vật nóng chảy.", D: "D. nhiệt lượng cần cung cấp để vật nóng chảy và khối lượng vật cần đo." }, explanation: "λ = Q / m. Quá trình nóng chảy xảy ra ở nhiệt độ không đổi nên không cần đo độ tăng nhiệt độ." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "D", q: "Câu 22: Khi hai vật có nhiệt độ khác nhau tiếp xúc với nhau thì xảy ra quá trình truyền nhiệt. Quá trình này làm thay đổi", options: { A: "A. trọng lượng của các vật.", B: "B. nhiệt dung riêng của các vật.", C: "C. khối lượng của các vật.", D: "D. nội năng của các vật." }, explanation: "Truyền nhiệt làm thay đổi nội năng của các vật." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "A", q: "Câu 23: Nhiệt dung riêng của đồng lớn hơn chì. Vì vậy để tăng nhiệt độ của 1 kg đồng và 1 kg chì thêm 1°C thì", options: { A: "A. khối đồng cần nhiều nhiệt lượng hơn khối chì.", B: "B. không khẳng định được.", C: "C. khối chì cần nhiều nhiệt lượng hơn khối đồng.", D: "D. hai khối đều cần nhiệt lượng như nhau." }, explanation: "Q = mcΔt, vì c_Đồng > c_Chì nên Q_Đồng > Q_Chì." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "B", q: "Câu 24: Với mô hình động học phân tử, sự khác biệt về độ lớn của lực tương tác giữa các phân tử trong chất rắn, lỏng, khí dẫn đến sự", options: { A: "A. đồng nhất về khối lượng của chúng.", B: "B. khác biệt về cấu trúc của chúng.", C: "C. khác biệt về khối lượng của chúng.", D: "D. đồng nhất về cấu trúc của chúng." }, explanation: "Lực tương tác quyết định sự sắp xếp và mật độ phân tử, tạo ra cấu trúc rắn/lỏng/khí." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "C", q: "Câu 25: Cho đồ thị biến đổi trạng thái theo thời gian của một chất ở điều kiện thường như hình bên. Chất này bắt đầu sôi ở phút thứ", svgHtml: SVG_CH1_Q15, options: { A: "A. 10.", B: "B. 30.", C: "C. 25.", D: "D. 5." }, explanation: "Ở phút thứ 25, nhiệt độ đạt 100°C và bắt đầu đi ngang => bắt đầu sôi." },
+      { type: "mcq", topicName: TOPIC_CH1, ans: "A", q: "Câu 26: Nhiệt độ không tuyệt đối (0K) là nhiệt độ mà tại đó các phân tử có động năng chuyển động nhiệt", options: { A: "A. bằng không và thế năng tương tác giữa chúng là tối thiểu.", B: "B. cực đại và thế năng tương tác giữa chúng là cực đại.", C: "C. bằng không và thế năng tương tác giữa chúng là cực đại.", D: "D. cực đại và thế năng tương tác giữa chúng là bằng không." }, explanation: "Ở 0K mọi chuyển động nhiệt ngừng lại (động năng = 0) và năng lượng đạt mức tối thiểu." },
+
+      // CHƯƠNG 2
+      { type: "mcq", topicName: TOPIC_CH2, ans: "C", q: "Câu 1: Xét một khối khí chứa trong bình kín. Khi nhiệt độ tăng, áp suất khối khí trong bình tăng lên là do", options: { A: "A. khối lượng phân tử khí tăng nên va chạm với thành bình mạnh hơn.", B: "B. số lượng phân tử khí tăng nên số va chạm vào thành bình tăng lên.", C: "C. các phân tử khí chuyển động nhanh hơn, va chạm vào thành bình mạnh hơn.", D: "D. các phân tử khí chuyển động chậm hơn, va chạm vào thành bình yếu hơn." }, explanation: "Nhiệt độ tăng làm tốc độ chuyển động nhiệt tăng, phân tử va chạm với thành bình mạnh hơn." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "C", q: "Câu 2: Khối khí có trạng thái ban đầu p₀, V₀, T₀. Biến đổi đẳng áp đến 2V₀ sau đó nén đẳng nhiệt về V₀. Đồ thị nào đúng?", svgHtml: SVG_CH2_Q2, options: { A: "A. Hình 1", B: "B. Hình 4", C: "C. Hình 3", D: "D. Hình 2" }, explanation: "Đẳng áp: T tăng, V tăng (đường qua gốc O). Đẳng nhiệt: V giảm, T = const (đường thẳng đứng). Hình 3 thỏa mãn." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "D", q: "Câu 3: Chọn câu trả lời đầy đủ. Áp suất của chất khí tác dụng lên thành bình phụ thuộc vào", options: { A: "A. thể tích của bình, khối lượng khí và nhiệt độ", B: "B. thể tích của bình, loại chất khí và nhiệt độ", C: "C. loại chất khí, khối lượng khí và nhiệt độ", D: "D. thể tích của bình, số mol khí và nhiệt độ" }, explanation: "p = nRT/V. Áp suất phụ thuộc vào số mol, nhiệt độ và thể tích bình chứa." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "C", q: "Câu 4: Khi áp dụng phương trình trạng thái cho một lượng chất khí lí tưởng, đại lượng nào sau đây được giữ không đổi", options: { A: "A. khối lượng và áp suất chất khí luôn không đổi.", B: "B. khối lượng khí và thể tích chất khí luôn không đổi.", C: "C. khối lượng khí luôn không đổi.", D: "D. nhiệt độ của khối khí luôn không đổi." }, explanation: "Phương trình trạng thái pV/T = const áp dụng cho một lượng khí XÁC ĐỊNH (khối lượng, số mol không đổi)." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "C", q: "Câu 5: Lực tương tác giữa các phân tử", options: { A: "A. luôn là lực đẩy.", B: "B. ở thể rắn là lực hút còn ở thể khí lại là lực đẩy.", C: "C. bao gồm cả lực hút và lực đẩy.", D: "D. luôn là lực hút." }, explanation: "Giữa các phân tử luôn tồn tại đồng thời cả lực hút và lực đẩy." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "A", q: "Câu 6: Đặc điểm nào sau đây KHÔNG PHẢI đặc điểm của chất khí?", options: { A: "A. Các phân tử sắp xếp một cách có trật tự.", B: "B. Các phân tử chuyển động hỗn loạn, không ngừng.", C: "C. Lực tương tác giữa các phân tử rất nhỏ.", D: "D. Nhiệt độ càng cao các phân tử chuyển động càng nhanh." }, explanation: "Chất khí có cấu trúc hoàn toàn hỗn loạn, các phân tử không sắp xếp có trật tự." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "C", q: "Câu 7: Khí lí tưởng là chất khí mà trong đó", options: { A: "A. các phân tử khí hoàn toàn không tương tác với nhau.", B: "B. các phân tử khí khi va chạm là va chạm mềm.", C: "C. các phân tử khí được xem là chất điểm và chỉ tương tác khi va chạm.", D: "D. các phân tử không có khối lượng và thể tích." }, explanation: "Mô hình khí lí tưởng: Phân tử là các chất điểm và bỏ qua lực tương tác trừ lúc va chạm." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "B", q: "Câu 8: Khí đẳng áp. T₁ = 32°C (305K) lên T₂ = 104°C (377K) thì V tăng thêm 1,2 lít. Thể tích ban đầu là", options: { A: "A. 6,3 lít.", B: "B. 5,1 lít.", C: "C. 0,5 lít.", D: "D. 1,7 lít." }, explanation: "V/305 = (V+1.2)/377 ⇒ 377V = 305V + 366 ⇒ 72V = 366 ⇒ V ≈ 5.08 ≈ 5.1 lít." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "A", q: "Câu 9: Cho một khối khí, nếu tăng áp suất lên gấp đôi và tăng nhiệt độ tuyệt đối lên gấp 3 thì thể tích khí sẽ", options: { A: "A. tăng lên 1,5 lần.", B: "B. tăng lên 6 lần.", C: "C. giảm xuống 1,5 lần.", D: "D. giảm xuống 6 lần." }, explanation: "V₂/V₁ = (p₁/p₂) × (T₂/T₁) = (1/2) × 3 = 1.5 lần." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "C", q: "Câu 10: Nhiệt độ của một lượng khí tăng từ 250 K đến 500 K và áp suất không đổi thì thể tích của khí", options: { A: "A. giảm đi một nửa.", B: "B. tăng lên gấp bốn.", C: "C. tăng lên gấp đôi.", D: "D. không đổi." }, explanation: "Đẳng áp: Thể tích tỉ lệ thuận với nhiệt độ tuyệt đối." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "D", q: "Câu 12: Hình vẽ dưới đây là đường đẳng áp của cùng một lượng khí ứng với các áp suất p₁, p₂ và p₃. Sắp xếp đúng là", svgHtml: SVG_CH2_Q12, options: { A: "A. p₂ < p₁ < p₃.", B: "B. p₂ > p₁ > p₃.", C: "C. p₁ > p₂ > p₃.", D: "D. p₁ < p₂ < p₃." }, explanation: "Đường dốc nhất (góc V-T lớn) thì p nhỏ. Do đó p₁ nhỏ nhất, p₃ lớn nhất ⇒ p₁ < p₂ < p₃." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "D", q: "Câu 13: Ở mặt hồ, p = 10⁵ Pa. Một bọt khí ở đáy hồ sâu 5m nổi lên mặt nước thì thể tích tăng lên bao nhiêu lần? (g=10 m/s², nhiệt độ không đổi, ρ=1000 kg/m³)", options: { A: "A. 1,2 lần.", B: "B. 2,0 lần.", C: "C. 1,6 lần.", D: "D. 1,5 lần." }, explanation: "p_đáy = 10⁵ + 1000×10×5 = 1.5.10⁵ Pa. Đẳng nhiệt: V_mặt / V_đáy = p_đáy / p_mặt = 1.5." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "A", q: "Câu 15: Khối khí có thể tích 10 lít ở 27°C. Giữ áp suất không đổi, phải tăng nhiệt độ khối khí lên đến bao nhiêu độ để thể tích là 12 lít?", options: { A: "A. 87°C", B: "B. 300°C", C: "C. 60°C", D: "D. 360°C" }, explanation: "V₁/T₁ = V₂/T₂ ⇒ 10/300 = 12/T₂ ⇒ T₂ = 360 K = 87°C." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "B", q: "Câu 16: Giữ áp suất không đổi và giảm nhiệt độ tuyệt đối thì khối lượng riêng của khí", options: { A: "A. giảm tỉ lệ thuận với nhiệt độ tuyệt đối.", B: "B. tăng tỉ lệ nghịch với nhiệt độ tuyệt đối.", C: "C. không thay đổi.", D: "D. tăng đến cực đại rồi giảm đi." }, explanation: "T giảm ⇒ V giảm. Mật độ ρ = m/V ⇒ V giảm thì ρ tăng (tỉ lệ nghịch với T)." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "D", q: "Câu 17: Khi nhiệt độ trong bình chứa khí tăng, áp suất của khối khí trong bình cũng tăng lên đó là vì", options: { A: "A. số lượng phân tử khí tăng.", B: "B. mật độ phân tử khí giảm.", C: "C. khoảng cách giữa các phân tử tăng.", D: "D. phân tử khí chuyển động nhanh hơn." }, explanation: "Nhiệt độ tăng làm tốc độ chuyển động nhiệt tăng, va chạm với thành bình mạnh hơn." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "C", q: "Câu 19: Một bình kín có 1,88.10²² phân tử khí oxygen. Biết khối lượng mol O₂ là 32 g/mol. Khối lượng khí trong bình là", options: { A: "A. 1,4 g.", B: "B. 2 g.", C: "C. 1 g.", D: "D. 1,5 g." }, explanation: "Số mol n = 1.88.10²² / 6.022.10²³ = 0.0312 mol. m = 0.0312 × 32 ≈ 1 g." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "B", q: "Câu 20: Hai bình V bằng nhau, T bằng nhau. m_khí bằng nhau nhưng M₁ = 2M₂. Áp suất khí bình 1:", options: { A: "A. gấp bốn lần áp suất khí ở bình 2.", B: "B. bằng một nửa áp suất khí ở bình 2.", C: "C. gấp hai lần áp suất khí ở bình 2.", D: "D. bằng áp suất khí ở bình 2." }, explanation: "Số mol n₁ = m/M₁, n₂ = m/M₂. Vì M₁ = 2M₂ nên n₁ = n₂/2. Vậy p₁ = p₂/2." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "C", q: "Câu 21: Biết khối lượng mol H₂O là 18 g/mol. Số phân tử nước có trong 1g H₂O là", options: { A: "A. 3,01.10²².", B: "B. 3,34.10²³.", C: "C. 3,34.10²².", D: "D. 3,01.10²³." }, explanation: "N = (1/18) × 6.022.10²³ ≈ 3.345.10²² phân tử." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "A", q: "Câu 26: Khối lượng mol của sắt là 56 g/mol. Số nguyên tử có trong 15 g sắt xấp xỉ", options: { A: "A. 1,613.10²³.", B: "B. 1,163.10²³.", C: "C. 1,361.10²³.", D: "D. 1,136.10²³." }, explanation: "N = (15/56) × 6.022.10²³ ≈ 1.613.10²³ nguyên tử." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "B", q: "Câu 27: Trung bình 1 kg gạo có 77500 hạt. Sản lượng mỗi năm 20 triệu tấn. Thời gian để tổng sản lượng đạt '1 mol hạt gạo' xấp xỉ", options: { A: "A. 388 tỷ năm.", B: "B. 388 triệu năm.", C: "C. 388 nghìn năm.", D: "D. 388 năm." }, explanation: "Hạt 1 năm = 20.10⁹ × 77500 = 1.55.10¹⁵ hạt. Thời gian = 6.022.10²³ / 1.55.10¹⁵ ≈ 388 triệu năm." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "D", q: "Câu 28: Mật độ phân tử của 1 gam khí H₂ đựng trong bình 4 L là", options: { A: "A. 7,5.10²² m⁻³", B: "B. 7,5.10²³ m⁻³", C: "C. 7,5.10¹⁹ m⁻³", D: "D. 7,5.10²⁵ m⁻³" }, explanation: "n = 0.5 mol. N = 3.011.10²³ phân tử. Mật độ = N / 0.004 m³ = 7.5.10²⁵ m⁻³." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "A", q: "Câu 29: Áp kế khí bình cầu nối ống tiết diện 0.1 cm². Ở 10°C, giọt thủy ngân cách A 20cm, ở 20°C cách A 130 cm. Dung tích bình là:", options: { A: "A. 309,3 cm³", B: "B. 270 cm³", C: "C. 324,3 cm³", D: "D. 240 cm³" }, explanation: "Đẳng áp: (V₀ + 2) / 283 = (V₀ + 13) / 293 ⇒ V₀ = 309.3 cm³." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "C", q: "Câu 30: Một bình dung tích 5 lít chứa 0,5 mol khí ở 0°C có áp suất là bao nhiêu? (1 mol ở 0°C, 1atm = 22,4 lít)", options: { A: "A. 2,04 atm.", B: "B. 2,56 atm.", C: "C. 2,24 atm.", D: "D. 1,12 atm." }, explanation: "V_đktc = 0.5 × 22.4 = 11.2 lít. Nén xuống 5L cùng 0°C: p = 1 × (11.2 / 5) = 2.24 atm." },
+      { type: "mcq", topicName: TOPIC_CH2, ans: "D", q: "Câu 31: Khi một lượng khí không đổi giãn nở đẳng nhiệt thì", options: { A: "A. áp suất khí tăng lên.", B: "B. khối lượng riêng của khí tăng lên.", C: "C. số phân tử khí trong một đơn vị thể tích tăng.", D: "D. số phân tử khí trong một đơn vị thể tích giảm." }, explanation: "V tăng làm mật độ phân tử (số phân tử trên đơn vị thể tích) giảm." },
+
+      // ==================== PHẦN II. ĐÚNG / SAI ====================
+      // CHƯƠNG 1
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 1: Dùng đèn cồn hơ nóng không khí trong ống nghiệm bịt kín bằng nút bấc cho đến khi nút bật ra.",
+        items: {
+          a: "a) Khi nút bấc chưa bật ra, nội năng của không khí trong ống nghiệm tăng.",
+          b: "b) Nhiệt lượng không khí nhận được từ ngọn lửa chuyển hoàn toàn thành công để làm nút bấc bật ra ngoài.",
+          c: "c) Khi nút bấc chưa bật ra, nhiệt độ không khí trong bình không thay đổi.",
+          d: "d) Nút bấc bật ra chứng tỏ động năng của các phân tử không khí trong ống nghiệm tăng lên khi được hơ nóng."
+        },
+        ans: { a: "Đ", b: "S", c: "S", d: "Đ" },
+        explanation: "• b) Sai: Nhiệt lượng không thể chuyển hóa hoàn toàn 100% thành công theo Nguyên lí II.\n• c) Sai: Khí nhận nhiệt đẳng tích nên nhiệt độ tăng mạnh."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 2: Đồ thị biểu diễn sự thay đổi nhiệt độ theo thời gian trong quá trình chuyển từ thể rắn sang lỏng của chất rắn 2 và 3.",
+        svgHtml: SVG_CH1_TF_Q2,
+        items: {
+          a: "a) Chất rắn 3 có nhiệt độ nóng chảy xác định.",
+          b: "b) Chất rắn 2 là chất rắn vô định hình.",
+          c: "c) Khi nung nóng liên tục, chất rắn 2 mềm đi và chuyển dần sang thể lỏng.",
+          d: "d) Chất rắn 3 không có cấu trúc tinh thể."
+        },
+        ans: { a: "Đ", b: "Đ", c: "Đ", d: "S" },
+        explanation: "• Đường 3 có đoạn nằm ngang ⇒ là chất rắn kết tinh, CÓ cấu trúc tinh thể. Phát biểu d sai.\n• Đường 2 tăng nhiệt độ liên tục ⇒ là chất rắn vô định hình."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 3: Đun nóng chảy hoàn toàn 2 kg đồng từ nhiệt độ 30°C. T_nc = 1085°C, c = 380 J/kg.K, λ = 1,8.10⁵ J/kg.",
+        items: {
+          a: "a) Nhiệt lượng cần cung cấp để nung nóng 2 kg đồng từ nhiệt độ ban đầu đến nhiệt độ nóng chảy là 801,8 kJ.",
+          b: "b) Ở nhiệt độ nóng chảy, nhiệt lượng cần cung cấp để 2 kg đồng nóng chảy hoàn toàn là 6,3.10⁴ J.",
+          c: "c) Khi đang nóng chảy, nhiệt độ của đồng không đổi và bằng 1085°C.",
+          d: "d) Khi nóng chảy các nguyên tử đồng nhận năng lượng để phá vỡ liên kết với các nguyên tử xung quanh."
+        },
+        ans: { a: "Đ", b: "S", c: "Đ", d: "Đ" },
+        explanation: "• a) Q_nóng = 2 × 380 × 1055 = 801,800 J = 801.8 kJ.\n• b) Sai: Q_chảy = m.λ = 2 × 1.8.10⁵ = 360,000 J."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 4: Thí nghiệm đo nhiệt hóa hơi riêng của nước bằng Oát kế và cân.",
+        items: {
+          a: "a) Có thể sử dụng các dụng cụ trên để đo nhiệt hóa hơi riêng của nước ở nhiệt độ 100°C.",
+          b: "b) Tiến hành thí nghiệm: Đặt nhiệt lượng kế lên cân, đổ nước nóng... (Quy trình chuẩn).",
+          c: "c) Từ bảng số liệu, vẽ đồ thị khối lượng m(kg) theo thời gian có dạng đường thẳng đi qua gốc tọa độ.",
+          d: "d) Từ số liệu trên, tính được nhiệt hóa hơi riêng của nước ở 100°C xấp xỉ 2,23.10⁶ J/kg."
+        },
+        ans: { a: "Đ", b: "Đ", c: "S", d: "Đ" },
+        explanation: "• c) Sai: Khối lượng nước giảm dần nên đồ thị là đường thẳng đi XUỐNG và cắt trục tung tại m_ban_đầu, không qua gốc tọa độ."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 5: Thí nghiệm đo nhiệt nóng chảy riêng của nước đá bằng cách cấp nhiệt qua điện trở.",
+        items: {
+          a: "a) Trong khoảng thời gian từ t=0 đến t=600s nhiệt độ của nước không tăng do nhiệt lượng điện trở tỏa ra đều tỏa hết ra môi trường.",
+          b: "b) Để đo công suất tỏa nhiệt của điện trở nhóm học sinh dùng cân điện tử (5).",
+          c: "c) Công suất trung bình của dòng điện qua điện trở trong nhiệt lượng kế là 14,24 W.",
+          d: "d) Nhiệt nóng chảy riêng của nước đá trong thí nghiệm này đo được chuẩn xác đúng bằng 3,3.10⁵ J/kg."
+        },
+        ans: { a: "S", b: "S", c: "Đ", d: "S" },
+        explanation: "• a) Sai: Nhiệt độ không tăng do năng lượng được dùng để phá vỡ liên kết mạng tinh thể (làm tan nước đá).\n• b) Sai: Cân dùng để đo khối lượng, Oát kế mới đo công suất.\n• d) Sai: Sai số thực nghiệm tỏa môi trường làm L lớn hơn giá trị chuẩn."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 6: Máy làm nóng nước dung tích 20 L, công suất 2500 W. Nước vào 18°C, ra 70°C. Hiệu suất 95%.",
+        items: {
+          a: "a) Khi nước được đưa vào máy đến lúc rơ le ngắt thì nhiệt độ của nước đã tăng 325 K.",
+          b: "b) Nhiệt lượng cần thiết cung cấp cho nước trong máy tăng nhiệt độ từ 18°C lên 70°C là 4 347 200 J.",
+          c: "c) Công của dòng điện cung cấp cho máy từ khi bật máy đến khi rơ le ngắt là 456 700 J.",
+          d: "d) Thời gian để làm nóng nước từ khi bật máy đến khi rơ le ngắt là 30,5 phút."
+        },
+        ans: { a: "S", b: "Đ", c: "S", d: "Đ" },
+        explanation: "• a) Sai: Tăng ΔT = 70 - 18 = 52°C = 52K.\n• c) Sai: Công điện A = 4347200 / 0.95 = 4576000 J (Đề cho 456700 thiếu số 0)."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 7: Đồ thị sự phụ thuộc nhiệt độ vào thời gian của một ấm đun nước.",
+        svgHtml: SVG_CH1_TF_Q7,
+        items: {
+          a: "a) Tại thời điểm ban đầu nhiệt độ của nước là 10°C.",
+          b: "b) Cứ 4 phút thì nhiệt độ của nước tăng 20°C.",
+          c: "c) Sau 28 phút kể từ lúc bắt đầu đun thì nhiệt độ của nước là 80°C.",
+          d: "d) Sau 40 phút kể từ lúc bắt đầu đun thì nước sẽ sôi."
+        },
+        ans: { a: "Đ", b: "S", c: "Đ", d: "Đ" },
+        explanation: "• b) Sai: Tốc độ tăng là 10°C / 4 phút (từ 10 lên 20)."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 8: Biết băng phiến là chất rắn kết tinh, nóng chảy ở nhiệt độ 80°C.",
+        items: {
+          a: "a) Khi đun nóng băng phiến nhiệt độ tăng dần, đến 100°C thì bắt đầu chuyển sang thể lỏng.",
+          b: "b) Trong suốt thời gian nóng chảy của băng phiến, nhiệt độ của băng phiến không thay đổi (80°C).",
+          c: "c) Nếu tiếp tục đun nóng thì sau một khoảng thời gian, băng phiến có thể chuyển hoàn toàn sang thể lỏng.",
+          d: "d) Sự chuyển từ thể rắn sang thể lỏng này gọi là sự đông đặc."
+        },
+        ans: { a: "S", b: "Đ", c: "Đ", d: "S" },
+        explanation: "• a) Sai: Băng phiến nóng chảy ở 80°C.\n• d) Sai: Rắn sang lỏng gọi là quá trình nóng chảy."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 9: Đồ thị sự thay đổi nhiệt độ theo nhiệt lượng cung cấp, biết c = 2500 J/kg.K.",
+        svgHtml: SVG_CH1_TF_Q9,
+        items: {
+          a: "a) Ở nhiệt độ 20°C thì nhiệt lượng cung cấp là 180 kJ.",
+          b: "b) Chất lỏng nhận một nhiệt lượng 180 kJ để tăng nhiệt độ từ 20°C đến 80°C.",
+          c: "c) Đoạn BC biểu thị chất lỏng đang hóa hơi.",
+          d: "d) Khối lượng chất lỏng là 1,2 kg."
+        },
+        ans: { a: "S", b: "Đ", c: "Đ", d: "Đ" },
+        explanation: "• a) Sai: Tại 20°C, quá trình cấp nhiệt mới bắt đầu nên Q = 0.\n• d) Đúng: m = Q / (c.Δt) = 180,000 / (2500 × 60) = 1.2 kg."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 10: Ấm điện công suất 1000 W đun 300g nước từ 20°C đến khi sôi. Sau đó đun thêm 2 phút. c = 4200 J/kgK, L = 2,26.10⁶ J/kg.",
+        items: {
+          a: "a) Nhiệt lượng cần để nước đạt đến nhiệt độ sôi là 10 080 J.",
+          b: "b) Thời gian cần để nước đạt đến nhiệt độ sôi là 100,8 s.",
+          c: "c) Nhiệt lượng nước đã nhận được trong thời gian đun thêm 2 phút là 12.10⁴ J.",
+          d: "d) Thời gian để hóa hơi hoàn toàn 300g nước tính từ khi nước sôi là 600 s."
+        },
+        ans: { a: "S", b: "Đ", c: "Đ", d: "S" },
+        explanation: "• a) Sai: Q = 0.3 × 4200 × 80 = 100,800 J (thiếu 1 số 0).\n• d) Sai: Thời gian hóa hơi t = m.L/P = 0.3 × 2.26.10⁶ / 1000 = 678 giây."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 11: Thực hành đo nhiệt dung riêng của nước.",
+        items: {
+          a: "a) Để xác định nhiệt dung riêng của một chất bằng thực nghiệm thì cần đo công suất, thời gian, khối lượng nước, nhiệt độ.",
+          b: "b) Nhiệt lượng cung cấp cho nước bằng công suất tiêu thụ của nhiệt lượng kế.",
+          c: "c) Có thể xác định được nhiệt dung riêng của nước qua độ dốc của đồ thị nhiệt độ - thời gian đun.",
+          d: "d) Nhiệt dung riêng của nước tính được trong thí nghiệm trên đúng bằng 4200 J/kg.K."
+        },
+        ans: { a: "Đ", b: "S", c: "Đ", d: "S" },
+        explanation: "• b) Sai: Nhiệt lượng (J) bằng CÔNG SUẤT NHÂN THỜI GIAN.\n• d) Sai: Do hao phí nhiệt, kết quả thực nghiệm không bao giờ đúng chính xác với số liệu lý thuyết."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 12: Đổ 1,5 lít nước 20°C vào ấm nhôm 600g. Đun 35 phút (H=75%) thì 20% lượng nước hóa hơi ở 100°C.",
+        items: {
+          a: "a) Nhiệt lượng có ích mà bếp cung cấp sau 35 phút là 1 223 040 J.",
+          b: "b) Nhiệt lượng toàn phần mà bếp cung cấp là 1 630 720 J.",
+          c: "c) Tỉ số giữa nhiệt lượng toàn phần và nhiệt lượng có ích là 3/4.",
+          d: "d) Công suất toàn phần của bếp điện xấp xỉ bằng 776,53 W."
+        },
+        ans: { a: "Đ", b: "Đ", c: "S", d: "Đ" },
+        explanation: "• a) Q_ich = (1.5×4190×80) + (0.6×880×80) + (0.3×2.26.10⁶) = 1,223,040 J.\n• c) Sai: Tỉ số toàn phần/có ích = 1 / 0.75 = 4/3."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 13: Bình nước nóng 9,0 kW. Nước chảy lưu lượng 5,8.10⁻² kg/s. Nước vào 15°C.",
+        items: {
+          a: "a) Nội năng của nước sau khi qua buồng đốt không thay đổi.",
+          b: "b) Nhiệt độ của nước khi ra khỏi buồng đốt là 50°C.",
+          c: "c) Để điều chỉnh nhiệt độ của nước ra khỏi buồng đốt, có thể thay đổi: công suất; lưu lượng; nhiệt độ vào.",
+          d: "d) Nếu công suất điện giảm 2 lần thì nhiệt độ nước ra khỏi buồng đốt là 33,5°C."
+        },
+        ans: { a: "S", b: "S", c: "Đ", d: "Đ" },
+        explanation: "• b) Sai: ΔT = 9000 / (0.058 × 4200) = 36.94°C. Nhiệt độ ra là 15 + 36.94 = 51.94°C.\n• d) Đúng: P giảm nửa thì ΔT giảm nửa = 18.47°C. Nhiệt độ ra là 15 + 18.47 = 33.47 ≈ 33.5°C."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 14: Máy nước nóng bằng năng lượng Mặt Trời. H=25%, I = 1000 W/m², S = 4,2 m².",
+        items: {
+          a: "a) Công suất bức xạ chiếu lên bộ thu nhiệt là 4200 W.",
+          b: "b) Trong 2 giờ năng lượng mặt trời chiếu lên bộ thu nhiệt là 28,8 MJ.",
+          c: "c) Trong 2 giờ phần năng lượng chuyển thành nhiệt năng là 5,76.10⁶ J.",
+          d: "d) Nếu hệ thống làm nóng 30 kg nước thì trong 1 giờ nhiệt độ nước tăng thêm 30°C."
+        },
+        ans: { a: "Đ", b: "S", c: "S", d: "Đ" },
+        explanation: "• b) Sai: E_bức_xạ = 4200 × 7200 = 30.24 MJ.\n• c) Sai: Q_ích = 25% × 30.24 = 7.56 MJ = 7.56.10⁶ J.\n• d) Đúng: 1 giờ Q_ích = 3,780,000 J. ΔT = 3780000 / (30 × 4200) = 30°C."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH1,
+        q: "PHẦN II - Câu 15: Đun 1 lít nước (28°C) đến 100°C cần 7 phút (H=90%). 200g hóa hơi cần 578s.",
+        items: {
+          a: "a) Để nước sôi thì nước phải thu nhiệt lượng.",
+          b: "b) Nhiệt lượng cần thiết để 1 lít nước thu vào để tăng nhiệt độ từ 28°C đến 100°C là 302 400 J.",
+          c: "c) Công suất điện của ấm điện là 15257/21 W.",
+          d: "d) Nhiệt hóa hơi riêng của nước ở 100°C là 2,08.10⁶ J/kg."
+        },
+        ans: { a: "Đ", b: "Đ", c: "S", d: "Đ" },
+        explanation: "• c) Sai: Công suất có ích P' = 302400 / 420 = 720 W. Công suất điện P_tp = 720 / 0.9 = 800 W.\n• d) Đúng: L = 720 × 578 / 0.2 = 2.08.10⁶ J/kg."
+      },
+      
+      // CHƯƠNG 2
+      {
+        type: "tf", topicName: TOPIC_CH2,
+        q: "PHẦN II - Câu 1 (Chương 2): Các nhận định về đặc điểm của phân tử khí lí tưởng.",
+        items: {
+          a: "a) Các phân tử khí luôn chuyển động thẳng đều.",
+          b: "b) Các phân tử khí chỉ tương tác khi va chạm với nhau và với thành bình.",
+          c: "c) Các phân tử khí có khối lượng không đáng kể.",
+          d: "d) Các phân tử khí được coi là các chất điểm."
+        },
+        ans: { a: "S", b: "Đ", c: "S", d: "Đ" },
+        explanation: "• a) Sai: Phân tử khí chuyển động hỗn loạn không ngừng.\n• c) Sai: Thể tích riêng không đáng kể, nhưng khối lượng là có."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH2,
+        q: "PHẦN II - Câu 2 (Chương 2): Một lượng khí lí tưởng biến đổi theo chu trình. Trạng thái (1) T=27°C (300K).",
+        svgHtml: SVG_CH2_TF_Q2,
+        items: {
+          a: "a) Nhiệt độ khí ở trạng thái (3) là 1200°C.",
+          b: "b) Thể tích khí ở trạng thái (2) là 4 lít.",
+          c: "c) Quá trình từ (1) sang (2) là quá trình đẳng nhiệt và thể tích khối khí giảm.",
+          d: "d) Chu trình biến đổi trên biểu diễn sang hệ tọa độ (V,T) như hình b."
+        },
+        ans: { a: "S", b: "Đ", c: "S", d: "Đ" },
+        explanation: "• a) Sai: Quá trình đẳng tích (2)->(3), T3 = 1200 K = 927°C.\n• b) Đúng: 1->2 là hyperbola (pV = const). p1*V1 = 2*1 = 2. => p2*V2 = 0.5*V2 = 2 => V2 = 4 lít.\n• c) Sai: Giãn nở đẳng nhiệt thì thể tích TĂNG (1 lên 4)."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH2,
+        q: "PHẦN II - Câu 3 (Chương 2): Đồ thị sự biến thiên thể tích theo áp suất trong điều kiện nhiệt độ không đổi.",
+        svgHtml: SVG_CH2_TF_Q3,
+        items: {
+          a: "a) Đường biểu diễn sự biến thiên của thể tích theo áp suất khi nhiệt độ không đổi là đường hypebol.",
+          b: "b) Khi áp suất khối khí có giá trị 0,5 kN/m² thì thể tích của khối khí là 4,8 cm³.",
+          c: "c) Mọi điểm trên đồ thị đều có nhiệt độ bằng nhau.",
+          d: "d) Khi áp suất khối khí thay đổi từ 0,5 kN/m² đến 1,5 kN/m² thì thể tích tăng một lượng 3,2 m³."
+        },
+        ans: { a: "Đ", b: "S", c: "Đ", d: "S" },
+        explanation: "• b) Sai: Đơn vị trục hoành là m³ (không phải cm³). pV = 1 * 2.4 = 2.4. => Khi p=0.5 thì V = 4.8 m³.\n• d) Sai: p tăng từ 0.5 lên 1.5 thì V giảm từ 4.8 xuống 1.6 (thể tích GIẢM, không phải tăng)."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH2,
+        q: "PHẦN II - Câu 4 (Chương 2): Đồ thị biến đổi khí lí tưởng: 1->2 (đường hyperbol), 2->3 (đẳng áp). (T1 = 300K, V1 = 2 lít).",
+        svgHtml: SVG_CH2_TF_Q4,
+        items: {
+          a: "a) Khối khí biến đổi đẳng nhiệt từ trạng thái (1) sang trạng thái (2) và biến đổi đẳng áp từ trạng thái (2) sang trạng thái (3).",
+          b: "b) Áp suất khối khí ở trạng thái (2) là 2 atm.",
+          c: "c) Nhiệt độ khối khí ở trạng thái (3) là 600°C.",
+          d: "d) Công khối khí thực hiện trong quá trình biến đổi từ trạng thái (2) sang trạng thái (3) có độ lớn bằng 1200 J."
+        },
+        ans: { a: "Đ", b: "Đ", c: "S", d: "S" },
+        explanation: "• Tại (1): p=6, V=2. Dựa vào khoảng cách lưới chia, V2 = 6 lít, V3 = 10 lít.\n• b) Đúng: p2 = 6*2 / 6 = 2 atm.\n• c) Sai: (3) có p=2, V=10. T3 = T1 * (20/12) = 500 K = 227°C.\n• d) Sai: A = p.ΔV = 2 * 101325 * (10 - 6).10⁻³ = 810.6 J."
+      },
+      {
+        type: "tf", topicName: TOPIC_CH2,
+        q: "PHẦN II - Câu 5 (Chương 2): Truyền nhiệt lượng Q cho khối khí, khí dãn nở đẩy pít-tông tăng thêm 7,0 lít ở áp suất không đổi 3.10⁵ Pa.",
+        items: {
+          a: "a) Truyền nhiệt lượng Q cho khối khí nên Q < 0.",
+          b: "b) Thể tích khí trong xi lanh là 7,0 lít.",
+          c: "c) Độ lớn công mà khối khí thực hiện là 2100 J.",
+          d: "d) Nếu trong quá trình này nội năng của khối khí giảm đi 1100 J thì Q = 10³ J."
+        },
+        ans: { a: "S", b: "S", c: "Đ", d: "Đ" },
+        explanation: "• a) Sai: Khí NHẬN nhiệt thì Q > 0.\n• b) Sai: Thể tích TĂNG THÊM 7.0 L (đây là độ biến thiên ΔV, không phải V).\n• c) Đúng: A_thực_hiện = p.ΔV = 3.10⁵ × 7.10⁻³ = 2100 J.\n• d) Đúng: Theo NLY I: ΔU = Q - A_thực_hiện ⇒ -1100 = Q - 2100 ⇒ Q = 1000 J = 10³ J."
+      },
+
+      // ==================== PHẦN III. TRẢ LỜI NGẮN ====================
+      // CHƯƠNG 1
+      { type: "sa", topicName: TOPIC_CH1, ans: ["31,5", "31.5"], q: "PHẦN III - Câu 1: Loại thiếc hàn là hỗn hợp thiếc và chì (thiếc chiếm 63%). Khối lượng 1 cuộn là 50g. Khối lượng thiếc trong cuộn dây trên là bao nhiêu gam (làm tròn đến hàng phần mười)?", placeholder: "Nhập khối lượng (g)...", explanation: "m_thiếc = 50 × 63% = 31,5 g." },
+      { type: "sa", topicName: TOPIC_CH1, ans: ["2,4", "2.4"], q: "PHẦN III - Câu 2: Nhiệt nóng chảy riêng của thiếc và chì lần lượt là 0,61.10⁵ J/kg và 0,25.10⁵ J/kg. Nhiệt lượng mỏ hàn cần để làm nóng chảy hết một cuộn dây thiếc hàn (50g, 63% thiếc) ở nhiệt độ nóng chảy là x.10³ J. Tìm x (làm tròn đến hàng phần mười).", placeholder: "Nhập x...", explanation: "Thiếc: 31.5g. Chì: 18.5g.\nQ = (0.0315 × 0.61.10⁵) + (0.0185 × 0.25.10⁵) = 1921.5 + 462.5 = 2384 J = 2,384.10³ J. Làm tròn đến phần mười ⇒ x = 2,4." },
+      { type: "sa", topicName: TOPIC_CH1, ans: ["137", "136", "136,5", "136.5"], q: "PHẦN III - Câu 3: Ở nhiệt độ bao nhiêu trong thang nhiệt độ Celsius thì giá trị của nó bằng một phần ba giá trị nhiệt độ tuyệt đối? (Kết quả làm tròn đến phần nguyên).", placeholder: "Nhập nhiệt độ (°C)...", explanation: "Ta có: t = T/3 ⇔ t = (t + 273,15)/3 ⇔ 2t = 273,15 ⇔ t ≈ 136,57 °C." },
+      { type: "sa", topicName: TOPIC_CH1, ans: ["880"], q: "PHẦN III - Câu 4: Đưa 20 g hơi chất lỏng ở 78°C vào nhiệt lượng kế chứa 350 g nước ở 25°C. Nhiệt độ cuối là 38°C. Biết C_nlk = 45 J/K, c_nước = 4,18 J/g.K, c_lỏng = 2500 J/kg.K = 2,5 J/g.K. Tính nhiệt hóa hơi riêng L của chất lỏng (J/g)? (Làm tròn đến hàng đơn vị).", placeholder: "Nhập L (J/g)...", explanation: "Nhiệt thu: Q_thu = C_nlk.Δt + m_nước.c_nước.Δt = 45×13 + 350×4.18×13 = 19604 J.\nNhiệt tỏa: Q_tỏa = 20×L + 20×2.5×40 = 20.L + 2000 J.\n20.L + 2000 = 19604 ⇒ L = 880,2 J/g ≈ 880 J/g." },
+      { type: "sa", topicName: TOPIC_CH1, ans: ["88,6", "88.6"], q: "PHẦN III - Câu 5: Viên đạn chì đang bay với tốc độ 240 m/s va chạm vào bức tường. Nhiệt dung riêng của chì là 130 J/kg.K. Nếu 40% công cản làm nóng viên đạn thì nhiệt độ đạn tăng thêm bao nhiêu độ K? (Làm tròn 1 chữ số thập phân).", placeholder: "Nhập độ tăng ΔT (K)...", explanation: "Q = 40% W_đ = 0.4 × 0.5 × m × 240² = 11520.m (J).\nΔT = Q / (mc) = 11520 / 130 = 88,615 K ≈ 88,6 K." },
+      { type: "sa", topicName: TOPIC_CH1, ans: ["1,5", "1.5"], q: "PHẦN III - Câu 6: Cục nước đá 150g ở 0°C được cung cấp 20040 J. Biết λ = 334 kJ/kg = 334 J/g. Xác định tỉ lệ khối lượng nước đá còn lại và khối lượng nước lỏng do đá tan ra.", placeholder: "Nhập tỉ lệ...", explanation: "Khối lượng đá tan: m_tan = 20040 / 334 = 60 g.\nKhối lượng đá còn lại: 150 - 60 = 90 g.\nTỉ lệ = 90 / 60 = 1,5." },
+      { type: "sa", topicName: TOPIC_CH1, ans: ["2,42", "2.42"], q: "PHẦN III - Câu 7: Đun 1 kg nước từ 10°C đến 100°C cần 18 phút. Tiếp tục đun hóa hơi 200g nước ở 100°C cần 23 phút. Bỏ qua nhiệt dung ấm, c = 4200 J/kg.K. Xác định nhiệt hóa hơi riêng L của nước tính ra đơn vị 10⁶ J/kg (Làm tròn đến 2 chữ số thập phân).", placeholder: "Nhập L (10⁶ J/kg)...", explanation: "Công suất hấp thụ: P = 1 × 4200 × (100 - 10) / (18 phút) = 21000 J/phút.\nNhiệt hóa hơi 200g: Q_hh = P × 23 = 483,000 J.\nL = Q_hh / m = 483,000 / 0.2 = 2,415,000 J/kg = 2,415.10⁶ J/kg ≈ 2,42.10⁶ J/kg." },
+      { type: "sa", topicName: TOPIC_CH1, ans: ["116"], q: "PHẦN III - Câu 8: Cần bao nhiêu giây để nóng chảy hoàn toàn 2 kg đồng từ 30°C trong lò 20000 W? Nhiệt độ nóng chảy = 1084°C, c = 380, λ = 180.10³ J/kg. Chỉ 50% năng lượng lò dùng làm đồng nóng và chảy (Làm tròn phần nguyên).", placeholder: "Nhập thời gian (s)...", explanation: "Q_cần = 2×380×(1084-30) + 2×180,000 = 801,040 + 360,000 = 1,161,040 J.\nNăng lượng tiêu thụ: A = 1,161,040 / 0.5 = 2,322,080 J.\nThời gian t = A / P = 2,322,080 / 20000 = 116,104 s ≈ 116 s." },
+      { type: "sa", topicName: TOPIC_CH1, ans: ["7,5", "7.5"], q: "PHẦN III - Câu 9: Pha 30 lít nước ở 40°C để tắm. Người này đổ n₁ lít nước sôi (100°C) vào n₂ lít nước mát (20°C). Bỏ qua mất mát nhiệt, thể tích nước sôi n₁ cần dùng là bao nhiêu lít?", placeholder: "Nhập thể tích (L)...", explanation: "Bảo toàn nhiệt lượng: n₁.(100 - 40) = n₂.(40 - 20) ⇒ 60 n₁ = 20 n₂ ⇒ n₂ = 3 n₁.\nThể tích tổng: n₁ + 3 n₁ = 30 ⇒ 4 n₁ = 30 ⇒ n₁ = 7,5 lít." },
+      
+      // CHƯƠNG 2
+      { type: "sa", topicName: TOPIC_CH2, ans: ["427"], q: "PHẦN III - Câu 1 (Chương 2): Có 12 g khí lí tưởng chiếm thể tích 4 lít ở 7°C. Sau khi nung nóng đẳng áp khối lượng riêng của khí là 1,2 g/lít. Tìm nhiệt độ của khí sau nung (°C)?", placeholder: "Nhập nhiệt độ (°C)...", explanation: "V₂ = m / ρ = 12 / 1.2 = 10 lít.\nĐẳng áp: V₁/T₁ = V₂/T₂ ⇔ 4/280 = 10/T₂ ⇒ T₂ = 700 K ⇒ t₂ = 700 - 273 = 427°C." },
+      { type: "sa", topicName: TOPIC_CH2, ans: ["0,75", "0.75"], q: "PHẦN III - Câu 2 (Chương 2): Tính khối lượng riêng (kg/m³) của không khí ở đỉnh Phan-xi-păng cao 3140 m. Biết mỗi lên cao 10m p giảm 1mmHg, nhiệt độ là 2°C. Điều kiện chuẩn (0°C, 760mmHg) ρ = 1,29 kg/m³. (Làm tròn 2 chữ số thập phân).", placeholder: "Nhập ρ (kg/m³)...", explanation: "p₂ = 760 - 314 = 446 mmHg. T₂ = 2 + 273 = 275 K.\nρ₂ / ρ₀ = (p₂/p₀) × (T₀/T₂) = (446/760) × (273/275) × 1.29 = 0.5868 × 0.9927 × 1.29 = 0.751 kg/m³ ≈ 0.75." },
+      { type: "sa", topicName: TOPIC_CH2, ans: ["198"], q: "PHẦN III - Câu 3 (Chương 2): Ống nhỏ tiết diện đều, một đầu kín. Cột thủy ngân 76 mm cách đáy 180 mm khi thẳng đứng miệng ở trên, và cách 220 mm khi miệng ở dưới. Độ dài cột không khí khi ống nằm ngang (mm)?", placeholder: "Nhập độ dài L (mm)...", explanation: "Miệng trên: p = p₀ + 76. Miệng dưới: p = p₀ - 76.\n(p₀ + 76)×180 = (p₀ - 76)×220 ⇒ 180 p₀ + 13680 = 220 p₀ - 16720 ⇒ 40 p₀ = 30400 ⇒ p₀ = 760 mmHg.\nNằm ngang p_ngang = p₀ = 760. L = (760+76)×180 / 760 = 198 mm." },
+      { type: "sa", topicName: TOPIC_CH2, ans: ["100"], q: "PHẦN III - Câu 4 (Chương 2): Áp kế khí bình cầu 270 cm³, ống nhỏ nằm ngang tiết diện 0,1 cm². Ở 0°C giọt thủy ngân cách bình 30 cm. Khoảng di chuyển của giọt thủy ngân khi hơ nóng đến 10°C là bao nhiêu cm?", placeholder: "Nhập độ dời (cm)...", explanation: "V₁ = 270 + 30×0.1 = 273 cm³. (T₁ = 273K)\nĐẳng áp V₂ = V₁ × T₂ / T₁ = 273 × 283 / 273 = 283 cm³.\nΔV = 10 cm³ ⇒ ΔL = ΔV / S = 10 / 0.1 = 100 cm." },
+      { type: "sa", topicName: TOPIC_CH2, ans: ["103"], q: "PHẦN III - Câu 5 (Chương 2): Bình hút khí ban đầu 760 mmHg. Mỗi lần hút V/20. Phải hút tối thiểu bao nhiêu lần để áp suất còn dưới 5 mmHg? (Coi nhiệt độ không đổi).", placeholder: "Nhập số lần bơm...", explanation: "p_n = p₀ × (V / (V + V/20))ⁿ = p₀ × (20/21)ⁿ.\n760 × (20/21)ⁿ < 5 ⇒ (20/21)ⁿ < 1/152 ⇒ n > ln(1/152) / ln(20/21) ≈ 102.97. Tối thiểu 103 lần." },
+      { type: "sa", topicName: TOPIC_CH2, ans: ["2250"], q: "PHẦN III - Câu 6 (Chương 2): Chu trình ABC (Hình 2). Nhiệt độ tại A là 250K. Đường thẳng AC đi qua gốc O. B, C nằm trên cùng một đường đẳng nhiệt. Nhiệt độ cực đại mà khí đạt được bằng bao nhiêu K?", svgHtml: SVG_CH2_SA_Q6, placeholder: "Nhập nhiệt độ cực đại (K)...", explanation: "Đường AC qua gốc O ⇒ p tỉ lệ thuận với V. Tại đồ thị V_C = 3V₀ ⇒ p_C = 3p₀.\nT_C = T_A × (p_C.V_C) / (p_A.V_A) = 250 × (3×3) / (1×1) = 2250 K.\nĐoạn BC là đẳng nhiệt (2250K). Nhiệt độ giảm dần trên CA và tăng trên AB. Max T = 2250K." }
+    ];
+
+    let activeQuestions = [];
+    let userState = {};
+    let isExamSubmitted = false;
+
+    function populateTopics() {
+      const sel = document.getElementById("topicSelect");
+      const topics = ["all", TOPIC_CH1, TOPIC_CH2];
+      sel.innerHTML = topics.map(t =>
+        `<option value="${t}">${t === "all" ? "Tất cả các chương" : t}</option>`
+      ).join("");
+    }
+
+    function initQuiz(shuffle = false, customList = null) {
+      const topicVal = document.getElementById("topicSelect").value;
+      const typeVal = document.getElementById("typeSelect").value;
+      const modeVal = document.getElementById("modeSelect").value;
+
+      isExamSubmitted = false;
+      userState = {};
+
+      if (customList) {
+        activeQuestions = [...customList];
+      } else {
+        activeQuestions = allQuestions.filter(item => {
+          const matchTopic = topicVal === "all" || item.topicName === topicVal;
+          const matchType = typeVal === "all" || item.type === typeVal;
+          return matchTopic && matchType;
+        });
+      }
+
+      if (shuffle) {
+        activeQuestions.sort(() => Math.random() - 0.5);
+      }
+
+      const showSubmit = modeVal === "exam";
+      document.getElementById("submitBtn").style.display = showSubmit ? "inline-block" : "none";
+      document.getElementById("bottomSubmitBtn").style.display = showSubmit ? "inline-block" : "none";
+      document.getElementById("retryWrongBtn").style.display = "none";
+      document.getElementById("bottomRetryBtn").style.display = "none";
+
+      renderQuiz();
+      updateStats();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById("quizContainer");
+      const modeVal = document.getElementById("modeSelect").value;
+
+      if (activeQuestions.length === 0) {
+        container.innerHTML = `<div class="question-card"><p>Không có câu hỏi nào phù hợp với bộ lọc hiện tại.</p></div>`;
+        return;
+      }
+
+      container.innerHTML = activeQuestions.map((item, idx) => {
+        let typeLabel = "";
+        if (item.type === "mcq") typeLabel = "Phần I: Trắc nghiệm ABCD (0.25đ)";
+        if (item.type === "tf") typeLabel = "Phần II: Đúng / Sai (Tối đa 1.0đ)";
+        if (item.type === "sa") typeLabel = "Phần III: Trả lời ngắn (0.25đ)";
+
+        const svgBlock = item.svgHtml ? item.svgHtml : "";
+
+        let bodyHtml = "";
+        if (item.type === "mcq") {
+          const isShortOptions = Object.values(item.options).every(txt => txt.length < 45);
+          const gridClass = isShortOptions ? "options-list grid-2" : "options-list";
+          bodyHtml = `<div class="${gridClass}">` +
+            Object.entries(item.options).map(([key, text]) => `
+              <button class="option-btn" id="q-${idx}-opt-${key}" onclick="handleMcq(${idx}, '${key}')">
+                <span>${text}</span>
+              </button>
+            `).join("") + `</div>`;
+        } else if (item.type === "tf") {
+          bodyHtml = `<div class="tf-list">` +
+            Object.entries(item.items).map(([subKey, text]) => `
+              <div class="tf-row" id="q-${idx}-row-${subKey}">
+                <div class="tf-statement">${text}</div>
+                <div class="tf-buttons">
+                  <button class="tf-btn" id="q-${idx}-${subKey}-Đ" onclick="handleTf(${idx}, '${subKey}', 'Đ')">Đúng</button>
+                  <button class="tf-btn" id="q-${idx}-${subKey}-S" onclick="handleTf(${idx}, '${subKey}', 'S')">Sai</button>
+                </div>
+              </div>
+            `).join("") + `</div>`;
+        } else if (item.type === "sa") {
+          bodyHtml = `
+            <div class="sa-wrapper" id="q-${idx}-sa-wrap">
+              <div class="sa-input-row">
+                <input type="text" class="sa-input" id="q-${idx}-sa-input"
+                  placeholder="${item.placeholder || 'Nhập đáp án...'}"
+                  oninput="handleSaInput(${idx}, this.value)"
+                  onkeydown="if(event.key==='Enter') checkSaInstant(${idx})" />
+                ${modeVal === "instant" ? `<button class="btn-primary" onclick="checkSaInstant(${idx})">Kiểm tra</button>` : ""}
+              </div>
+            </div>
+          `;
+        }
+
+        const expHtml = item.explanation
+          ? `<div class="explanation-box" id="q-${idx}-exp">
+               <div class="explanation-title">💡 Lời giải chi tiết:</div>
+               <div>${item.explanation}</div>
+             </div>`
+          : "";
+
+        let classTags = "type-tag";
+        if(item.type === 'tf') classTags += ' tf-tag';
+        if(item.type === 'sa') classTags += ' sa-tag';
+
+        return `
+          <div class="question-card" id="card-${idx}">
+            <div class="card-header-tags">
+              <span class="topic-tag">${item.topicName}</span>
+              <span class="${classTags}">${typeLabel}</span>
+            </div>
+            <div class="question-text">${item.q}</div>
+            ${svgBlock}
+            ${bodyHtml}
+            <div class="feedback" id="q-${idx}-fb"></div>
+            ${expHtml}
+          </div>
+        `;
+      }).join("");
+    }
+
+    function handleMcq(idx, key) {
+      const mode = document.getElementById("modeSelect").value;
+      if (mode === "exam" && isExamSubmitted) return;
+      userState[idx] = key;
+      const item = activeQuestions[idx];
+
+      ["A", "B", "C", "D"].forEach(k => {
+        const btn = document.getElementById(`q-${idx}-opt-${k}`);
+        if (!btn) return;
+        btn.classList.remove("selected", "correct", "wrong");
+        if (mode === "exam") {
+          if (k === key) btn.classList.add("selected");
+        } else {
+          if (k === item.ans) btn.classList.add("correct");
+          else if (k === key && key !== item.ans) btn.classList.add("wrong");
+        }
+      });
+      if (mode === "instant") showQuestionFeedback(idx);
+      updateStats();
+    }
+
+    function handleTf(idx, subKey, val) {
+      const mode = document.getElementById("modeSelect").value;
+      if (mode === "exam" && isExamSubmitted) return;
+      if (!userState[idx]) userState[idx] = {};
+      userState[idx][subKey] = val;
+
+      const item = activeQuestions[idx];
+      const btnD = document.getElementById(`q-${idx}-${subKey}-Đ`);
+      const btnS = document.getElementById(`q-${idx}-${subKey}-S`);
+      const row = document.getElementById(`q-${idx}-row-${subKey}`);
+
+      btnD.classList.remove("selected", "correct-choice", "wrong-choice");
+      btnS.classList.remove("selected", "correct-choice", "wrong-choice");
+      row.classList.remove("row-correct", "row-wrong");
+
+      if (mode === "exam") {
+        if (val === "Đ") btnD.classList.add("selected");
+        else btnS.classList.add("selected");
+      } else {
+        const rightAns = item.ans[subKey];
+        const chosenBtn = val === "Đ" ? btnD : btnS;
+        if (val === rightAns) {
+          chosenBtn.classList.add("correct-choice");
+          row.classList.add("row-correct");
+        } else {
+          chosenBtn.classList.add("wrong-choice");
+          row.classList.add("row-wrong");
+        }
+        showQuestionFeedback(idx);
+      }
+      updateStats();
+    }
+
+    function handleSaInput(idx, val) {
+      const mode = document.getElementById("modeSelect").value;
+      if (mode === "exam" && isExamSubmitted) return;
+      userState[idx] = val.trim();
+      updateStats();
+    }
+
+    function checkSaInstant(idx) {
+      const val = (document.getElementById(`q-${idx}-sa-input`).value || "").trim();
+      userState[idx] = val;
+      showQuestionFeedback(idx);
+      updateStats();
+    }
+
+    function normalizeSa(str) {
+      return String(str || "").trim().toLowerCase().replace(/\s+/g, " ");
+    }
+
+    function isSaCorrect(item, userVal) {
+      if (!userVal) return false;
+      const normUser = normalizeSa(userVal);
+      const normUserComma = normUser.replace(".", ",");
+      const normUserDot = normUser.replace(",", ".");
+      return item.ans.some(a => {
+        const na = normalizeSa(a);
+        return na === normUser || na === normUserComma || na === normUserDot;
+      });
+    }
+
+    function getQuestionScore(idx) {
+      const item = activeQuestions[idx];
+      const st = userState[idx];
+
+      if (item.type === "mcq") {
+        if (!st) return { earned: 0, max: QUIZ_CONFIG.mcqPoint, isDone: false, isFull: false };
+        const ok = st === item.ans;
+        return { earned: ok ? QUIZ_CONFIG.mcqPoint : 0, max: QUIZ_CONFIG.mcqPoint, isDone: true, isFull: ok };
+      } else if (item.type === "tf") {
+        if (!st) return { earned: 0, max: 1.0, isDone: false, isFull: false };
+        const keys = ["a", "b", "c", "d"];
+        const answeredCount = keys.filter(k => st[k] === "Đ" || st[k] === "S").length;
+        if (answeredCount === 0) return { earned: 0, max: 1.0, isDone: false, isFull: false };
+        let correctCount = 0;
+        keys.forEach(k => { if (st[k] === item.ans[k]) correctCount++; });
+        const pts = QUIZ_CONFIG.tfPoints[correctCount];
+        return { earned: pts, max: 1.0, isDone: answeredCount === 4, isFull: correctCount === 4, correctCount };
+      } else if (item.type === "sa") {
+        if (!st) return { earned: 0, max: QUIZ_CONFIG.saPoint, isDone: false, isFull: false };
+        const ok = isSaCorrect(item, st);
+        return { earned: ok ? QUIZ_CONFIG.saPoint : 0, max: QUIZ_CONFIG.saPoint, isDone: st.length > 0, isFull: ok };
+      }
+    }
+
+    function showQuestionFeedback(idx) {
+      const item = activeQuestions[idx];
+      const fb = document.getElementById(`q-${idx}-fb`);
+      const exp = document.getElementById(`q-${idx}-exp`);
+      const sc = getQuestionScore(idx);
+
+      fb.className = "feedback show";
+      if (item.type === "mcq") {
+        if (sc.isFull) {
+          fb.classList.add("ok");
+          fb.textContent = `✓ Chính xác! Đáp án đúng là ${item.ans} (+0.25 điểm).`;
+        } else {
+          fb.classList.add("err");
+          fb.textContent = `✗ Chưa đúng! Đáp án đúng là ${item.ans}.`;
+        }
+      } else if (item.type === "tf") {
+        const rightStr = `a-${item.ans.a}, b-${item.ans.b}, c-${item.ans.c}, d-${item.ans.d}`;
+        if (sc.correctCount === 4) {
+          fb.classList.add("ok");
+          fb.textContent = `✓ Tuyệt vời! Đúng cả 4/4 ý (+1.00 điểm). Đáp án: ${rightStr}`;
+        } else if (sc.correctCount > 0) {
+          fb.classList.add("partial");
+          fb.textContent = `⚠ Đúng ${sc.correctCount}/4 ý (+${sc.earned.toFixed(2)} điểm). Đáp án đúng: ${rightStr}`;
+        } else {
+          fb.classList.add("err");
+          fb.textContent = `✗ Đúng 0/4 ý (0 điểm). Đáp án đúng: ${rightStr}`;
+        }
+      } else if (item.type === "sa") {
+        const wrap = document.getElementById(`q-${idx}-sa-wrap`);
+        wrap.classList.remove("sa-correct", "sa-wrong");
+        if (sc.isFull) {
+          wrap.classList.add("sa-correct");
+          fb.classList.add("ok");
+          fb.textContent = `✓ Chính xác! Đáp án: ${item.ans[0]} (+0.25 điểm).`;
+        } else {
+          wrap.classList.add("sa-wrong");
+          fb.classList.add("err");
+          fb.textContent = `✗ Chưa chính xác! Đáp án đúng là: ${item.ans[0]}`;
+        }
+      }
+      if (exp) exp.classList.add("show");
+    }
+
+    function submitExam() {
+      isExamSubmitted = true;
+      activeQuestions.forEach((item, idx) => {
+        if (item.type === "mcq") {
+          const chosen = userState[idx];
+          ["A", "B", "C", "D"].forEach(k => {
+            const btn = document.getElementById(`q-${idx}-opt-${k}`);
+            if (!btn) return;
+            btn.classList.remove("selected");
+            if (k === item.ans) btn.classList.add("correct");
+            else if (k === chosen && chosen !== item.ans) btn.classList.add("wrong");
+          });
+        } else if (item.type === "tf") {
+          const st = userState[idx] || {};
+          ["a", "b", "c", "d"].forEach(subKey => {
+            const val = st[subKey];
+            const rightAns = item.ans[subKey];
+            const btnD = document.getElementById(`q-${idx}-${subKey}-Đ`);
+            const btnS = document.getElementById(`q-${idx}-${subKey}-S`);
+            const row = document.getElementById(`q-${idx}-row-${subKey}`);
+            btnD.classList.remove("selected");
+            btnS.classList.remove("selected");
+            if (val) {
+              const chosenBtn = val === "Đ" ? btnD : btnS;
+              if (val === rightAns) {
+                chosenBtn.classList.add("correct-choice");
+                row.classList.add("row-correct");
+              } else {
+                chosenBtn.classList.add("wrong-choice");
+                row.classList.add("row-wrong");
+              }
+            } else {
+              row.classList.add("row-wrong");
+            }
+          });
+        }
+        showQuestionFeedback(idx);
+      });
+      updateStats();
+    }
+
+    function updateStats() {
+      const mode = document.getElementById("modeSelect").value;
+      let doneCount = 0, fullCount = 0, notFullCount = 0, earnedTotal = 0, maxTotal = 0;
+
+      activeQuestions.forEach((_, idx) => {
+        const sc = getQuestionScore(idx);
+        maxTotal += sc.max;
+        if (sc.isDone) doneCount++;
+        if (mode === "instant" || isExamSubmitted) {
+          if (sc.isDone) {
+            earnedTotal += sc.earned;
+            if (sc.isFull) fullCount++;
+            else notFullCount++;
+          } else if (isExamSubmitted) {
+            notFullCount++;
+          }
+        }
+      });
+
+      document.getElementById("progressText").textContent = `Đã làm: ${doneCount} / ${activeQuestions.length}`;
+      document.getElementById("correctText").textContent = `Tối đa: ${fullCount}`;
+      document.getElementById("wrongText").textContent = `Chưa tối đa: ${notFullCount}`;
+      document.getElementById("scoreText").textContent = `Điểm: ${earnedTotal.toFixed(2)} / ${maxTotal.toFixed(2)}`;
+
+      const showRetry = notFullCount > 0;
+      document.getElementById("retryWrongBtn").style.display = showRetry ? "inline-block" : "none";
+      document.getElementById("bottomRetryBtn").style.display = showRetry ? "inline-block" : "none";
+    }
+
+    function retryWrong() {
+      const wrongList = activeQuestions.filter((_, idx) => !getQuestionScore(idx).isFull);
+      if (wrongList.length > 0) {
+        initQuiz(false, wrongList);
+        scrollToTopFast();
+      }
+    }
+
+    function scrollToTopFast() { window.scrollTo({ top: 0, behavior: "smooth" }); }
+    window.addEventListener("scroll", () => {
+      const btn = document.getElementById("floatingTopBtn");
+      if (window.scrollY > 300) btn.classList.add("visible");
+      else btn.classList.remove("visible");
+    });
+
+    populateTopics();
+    initQuiz(false);
+  </script>
+</body>
+</html>
